@@ -80,10 +80,18 @@
 </script>
 
 <style>
-  html { scroll-behavior: smooth; }
-  body { font-family: 'Inter', sans-serif; background-color: #F7F5F1; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { font-family: 'Inter', sans-serif; background-color: #F7F5F1; overflow-x: hidden; }
   .font-display { font-family: 'Space Grotesk', sans-serif; }
   .font-mono { font-family: 'JetBrains Mono', monospace; }
+  img, video, canvas, svg { max-width: 100%; }
+
+  h1, h2, h3, p, a, button, input, select, textarea, span {
+    overflow-wrap: anywhere;
+  }
+
+  #home h1 { font-size: clamp(2.4rem, 7vw, 3.4rem); }
+  section[id]:not(#home) { scroll-margin-top: 4rem; }
 
   /* Reduced motion respect */
   @media (prefers-reduced-motion: reduce) {
@@ -137,6 +145,32 @@
   .chip { background: #F7F5F1; border-color: rgba(17,21,28,0.08); color: #5B6472; }
   .chip:hover { border-color: rgba(43,182,115,0.4); color: #11151C; }
   .chip.active-chip { background: #11151C; border-color: #11151C; color: #F7F5F1; }
+
+  @media (max-width: 640px) {
+    section[id]:not(#home) { padding-top: 4rem; padding-bottom: 4rem; }
+    #home > .relative.max-w-7xl { padding-top: 3rem; padding-bottom: 3.5rem; gap: 2rem; }
+    #home h1 { font-size: clamp(2.05rem, 10vw, 2.85rem); line-height: 1.06; }
+    #home h1 br { display: none; }
+    #home p.text-lg { font-size: 1rem; line-height: 1.7; }
+    #home .mt-8 { display: grid; grid-template-columns: 1fr; gap: .75rem; }
+    #home .mt-8 a { justify-content: center; width: 100%; padding: .875rem 1rem; font-size: .95rem; }
+    #home .mt-10 { flex-direction: column; align-items: flex-start; gap: .75rem; font-size: .78rem; }
+    #home .p-6 { padding: 1rem; }
+    h2.font-display { font-size: clamp(1.75rem, 8vw, 2.15rem); line-height: 1.14; }
+    .rounded-2xl { border-radius: .9rem; }
+    #authModal, #customerDashboard, #adminPanel { align-items: flex-start; padding: .75rem; }
+    #authModal > div, #customerDashboard > div, #adminPanel > div { max-height: calc(100dvh - 1.5rem); padding: 1rem; }
+    #customerDashboard .text-2xl, #adminPanel .text-2xl { font-size: 1.35rem; }
+    #contact .grid, #devices .grid { min-width: 0; }
+    input, select, textarea, button { font-size: 16px; }
+  }
+
+  @media (max-width: 380px) {
+    nav { padding-left: 1rem !important; padding-right: 1rem !important; }
+    #home > .relative.max-w-7xl, .max-w-7xl { padding-left: 1rem; padding-right: 1rem; }
+    #home h1 { font-size: clamp(1.9rem, 10vw, 2.35rem); }
+    .font-mono.text-xs { font-size: .68rem; }
+  }
 </style>
 </head>
 
