@@ -819,6 +819,8 @@
   </div>
 
   <div class="relative">
+    <div class="pointer-events-none absolute inset-y-0 left-0 w-10 sm:w-24 bg-gradient-to-r from-paperDim to-transparent z-10"></div>
+    <div class="pointer-events-none absolute inset-y-0 right-0 w-10 sm:w-24 bg-gradient-to-l from-paperDim to-transparent z-10"></div>
     <div class="flex gap-5 ticker-track" id="tickerTrack" style="width:max-content;"></div>
   </div>
 </section>
@@ -1138,15 +1140,15 @@ function starString(n) {
 function renderTicker() {
   const doubled = [...REVIEWS, ...REVIEWS];
   tickerTrack.innerHTML = doubled.map(r => `
-    <div class="bg-white border border-black/5 rounded-xl p-5 w-80 flex-shrink-0">
-      <div class="flex items-center gap-3 mb-3">
-        <div class="w-10 h-10 rounded-full bg-ink text-paper flex items-center justify-center font-display font-semibold text-sm flex-shrink-0">${r.name.split(' ').map(n=>n[0]).join('')}</div>
+    <div class="bg-white border border-black/5 rounded-xl p-6 w-[85vw] sm:w-96 min-h-[180px] flex-shrink-0">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-11 h-11 rounded-full bg-ink text-paper flex items-center justify-center font-display font-semibold text-sm flex-shrink-0">${r.name.split(' ').map(n=>n[0]).join('')}</div>
         <div>
-          <p class="font-display font-semibold text-sm text-ink">${r.name}</p>
-          <div class="text-xs">${starString(r.rating)}</div>
+          <p class="font-display font-semibold text-base text-ink">${r.name}</p>
+          <div class="text-xs mt-0.5">${starString(r.rating)}</div>
         </div>
       </div>
-      <p class="text-sm text-slate leading-relaxed">${r.text}</p>
+      <p class="text-sm sm:text-[15px] text-slate leading-relaxed">${r.text}</p>
     </div>`).join('');
 }
 renderTicker();
