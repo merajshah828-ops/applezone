@@ -27,7 +27,7 @@
   "name": "Apple Zone",
   "image": "",
   "telephone": "+91-77807-08876",
-  "email": "applezone@gmail.com",
+  "email": "applezone.kbhp@gmail.com",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "15-21-16/9, Block 16 LIG Flats, Shop No. 1, 1st Floor, Kukatpally Housing Board Colony, 3rd Phase",
@@ -92,6 +92,7 @@
 
   #home h1 { font-size: clamp(2.4rem, 7vw, 3.4rem); }
   section[id]:not(#home) { scroll-margin-top: 4rem; }
+  [id] { scroll-margin-top: 5rem; }
 
   /* Reduced motion respect */
   @media (prefers-reduced-motion: reduce) {
@@ -939,9 +940,9 @@
           <div class="w-10 h-10 rounded-lg bg-signal/10 text-signal flex items-center justify-center flex-shrink-0"><i class="fa-brands fa-whatsapp"></i></div>
           <div><p class="text-xs text-paper/50 font-mono">WHATSAPP</p><p class="font-medium">+91 77807 08876</p></div>
         </a>
-        <a href="mailto:applezone@gmail.com" class="flex items-center gap-4 bg-inkSoft border border-white/10 rounded-xl p-4 hover:border-signal/40 transition-colors">
+        <a href="mailto:applezone.kbhp@gmail.com" class="flex items-center gap-4 bg-inkSoft border border-white/10 rounded-xl p-4 hover:border-signal/40 transition-colors">
           <div class="w-10 h-10 rounded-lg bg-signal/10 text-signal flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-envelope"></i></div>
-          <div><p class="text-xs text-paper/50 font-mono">EMAIL</p><p class="font-medium">applezone@gmail.com</p></div>
+          <div><p class="text-xs text-paper/50 font-mono">EMAIL</p><p class="font-medium">applezone.kbhp@gmail.com</p></div>
         </a>
         <div class="flex items-center gap-4 bg-inkSoft border border-white/10 rounded-xl p-4">
           <div class="w-10 h-10 rounded-lg bg-signal/10 text-signal flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-location-dot"></i></div>
@@ -1010,7 +1011,7 @@
         <p class="font-display font-semibold text-paper mb-4 text-sm tracking-wide">CONTACT</p>
         <ul class="space-y-2.5 text-sm">
           <li class="flex items-start gap-2"><i class="fa-solid fa-phone mt-0.5 text-signal"></i> +91 77807 08876</li>
-          <li class="flex items-start gap-2"><i class="fa-solid fa-envelope mt-0.5 text-signal"></i> applezone@gmail.com</li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-envelope mt-0.5 text-signal"></i> applezone.kbhp@gmail.com</li>
           <li class="flex items-start gap-2"><i class="fa-solid fa-location-dot mt-0.5 text-signal"></i> Kukatpally, Hyderabad 500072</li>
         </ul>
       </div>
@@ -1753,6 +1754,37 @@ closeAdminPanelBtn?.addEventListener('click', closeAdminPanelView);
 /* ============ NAVBAR & MOBILE MENU ============ */
 const menuBtn = document.getElementById('menuBtn');
 const mobileMenu = document.getElementById('mobileMenu');
+
+function closeMobileMenu() {
+  mobileMenu.classList.add('hidden');
+  menuBtn.setAttribute('aria-expanded', 'false');
+  menuBtn.querySelector('i').className = 'fa-solid fa-bars text-xl';
+}
+
+function scrollToPageSection(sectionId) {
+  const target = document.getElementById(sectionId);
+  if (!target) return;
+
+  const navHeight = navbar ? navbar.offsetHeight : 0;
+  const targetTop = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 8;
+  window.scrollTo({ top: Math.max(0, targetTop), behavior: 'smooth' });
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', event => {
+    const sectionId = link.getAttribute('href').slice(1);
+    if (!sectionId || !document.getElementById(sectionId)) return;
+
+    event.preventDefault();
+    scrollToPageSection(sectionId);
+    history.pushState(null, '', `#${sectionId}`);
+
+    if (mobileMenu && menuBtn && !mobileMenu.classList.contains('hidden')) {
+      closeMobileMenu();
+    }
+  });
+});
+
 menuBtn.addEventListener('click', () => {
   const isOpen = !mobileMenu.classList.contains('hidden');
   mobileMenu.classList.toggle('hidden');
@@ -1760,9 +1792,7 @@ menuBtn.addEventListener('click', () => {
   menuBtn.querySelector('i').className = isOpen ? 'fa-solid fa-bars text-xl' : 'fa-solid fa-xmark text-xl';
 });
 mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-  mobileMenu.classList.add('hidden');
-  menuBtn.setAttribute('aria-expanded', 'false');
-  menuBtn.querySelector('i').className = 'fa-solid fa-bars text-xl';
+  closeMobileMenu();
 }));
 
 /* ============ REVEAL ON SCROLL ============ */
