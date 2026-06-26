@@ -147,6 +147,9 @@
   .chip:hover { border-color: rgba(43,182,115,0.4); color: #11151C; }
   .chip.active-chip { background: #11151C; border-color: #11151C; color: #F7F5F1; }
 
+  /* Sell For Cash: photo drop zone drag feedback */
+  #sellPhotoDropZone.drag-over { border-color: #2BB673; background: rgba(43,182,115,0.06); }
+
   @media (max-width: 640px) {
     section[id]:not(#home) { padding-top: 4rem; padding-bottom: 4rem; }
     #home > .relative.max-w-7xl { padding-top: 3rem; padding-bottom: 3.5rem; gap: 2rem; }
@@ -159,9 +162,6 @@
     #home .p-6 { padding: 1rem; }
     h2.font-display { font-size: clamp(1.75rem, 8vw, 2.15rem); line-height: 1.14; }
     .rounded-2xl { border-radius: .9rem; }
-    #authModal, #customerDashboard, #adminPanel { align-items: flex-start; padding: .75rem; }
-    #authModal > div, #customerDashboard > div, #adminPanel > div { max-height: calc(100dvh - 1.5rem); padding: 1rem; }
-    #customerDashboard .text-2xl, #adminPanel .text-2xl { font-size: 1.35rem; }
     #contact .grid, #devices .grid { min-width: 0; }
     input, select, textarea, button { font-size: 16px; }
   }
@@ -181,12 +181,15 @@
 <header id="navbar" class="fixed top-0 inset-x-0 z-50 transition-all duration-300 bg-ink/95 backdrop-blur-sm border-b border-white/5">
   <nav class="max-w-7xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
     <a href="#home" class="flex items-center gap-2.5 group">
-      <span class="w-9 h-9 rounded-lg bg-signal/15 border border-signal/30 flex items-center justify-center font-mono text-signal font-bold text-sm group-hover:bg-signal/25 transition-colors">AZ</span>
+      <span class="w-10 h-10 rounded-xl bg-signal/15 border border-signal/30 flex items-center justify-center shadow-sm group-hover:bg-signal/25 transition-colors group-hover:scale-105 transition-transform font-mono text-signal font-bold text-sm" aria-label="Apple Zone logo">
+        AZ
+      </span>
       <span class="font-display font-semibold text-lg text-paper tracking-tight">Apple Zone</span>
     </a>
 
     <div class="hidden lg:flex items-center gap-8 font-medium text-sm text-paper/80">
       <a href="#devices" class="hover:text-signal transition-colors">Devices</a>
+      <a href="#sell-for-cash" class="hover:text-signal transition-colors">Sell For Cash</a>
       <a href="#services" class="hover:text-signal transition-colors">Services</a>
       <a href="#why" class="hover:text-signal transition-colors">Why Us</a>
       <a href="#reviews" class="hover:text-signal transition-colors">Reviews</a>
@@ -197,11 +200,7 @@
       <a href="tel:+917780708876" class="font-mono text-xs text-paper/70 hover:text-signal transition-colors flex items-center gap-1.5">
         <i class="fa-solid fa-phone text-signal"></i> +91 77807 08876
       </a>
-      <button id="headerAccountBtn" type="button" class="flex items-center gap-2 rounded-lg border border-white/15 bg-white/10 px-4 py-2.5 text-sm font-semibold text-paper transition-colors hover:bg-white/15">
-        <i class="fa-solid fa-user-circle"></i>
-        <span>Login / Register</span>
-      </button>
-      <a href="#contact" class="bg-signal hover:bg-signalDark text-ink font-semibold text-sm px-5 py-2.5 rounded-lg transition-colors">Sell Your Device</a>
+      <a href="#sell-for-cash" class="bg-signal hover:bg-signalDark text-ink font-semibold text-sm px-5 py-2.5 rounded-lg transition-colors">Sell Your Device</a>
     </div>
 
     <button id="menuBtn" aria-label="Open menu" aria-expanded="false" class="lg:hidden w-10 h-10 flex items-center justify-center text-paper">
@@ -212,255 +211,14 @@
   <!-- Mobile menu -->
   <div id="mobileMenu" class="lg:hidden hidden border-t border-white/10 bg-ink px-5 py-4 space-y-3">
     <a href="#devices" class="block text-paper/85 font-medium py-1.5">Devices</a>
+    <a href="#sell-for-cash" class="block text-paper/85 font-medium py-1.5">Sell For Cash</a>
     <a href="#services" class="block text-paper/85 font-medium py-1.5">Services</a>
     <a href="#why" class="block text-paper/85 font-medium py-1.5">Why Us</a>
     <a href="#reviews" class="block text-paper/85 font-medium py-1.5">Reviews</a>
     <a href="#contact" class="block text-paper/85 font-medium py-1.5">Contact</a>
-    <button id="mobileAccountBtn" type="button" class="w-full rounded-lg border border-white/10 bg-white/10 px-3 py-2.5 text-left text-paper/90 font-semibold flex items-center gap-2">
-      <i class="fa-solid fa-user-circle"></i> Login / Register
-    </button>
-    <a href="#contact" class="block text-center bg-signal text-ink font-semibold py-2.5 rounded-lg mt-2">Sell Your Device</a>
+    <a href="#sell-for-cash" class="block text-center bg-signal text-ink font-semibold py-2.5 rounded-lg mt-2">Sell Your Device</a>
   </div>
 </header>
-
-<!-- ============ AUTH MODAL ============ -->
-<div id="authModal" class="fixed inset-0 z-[80] hidden items-center justify-center bg-ink/70 px-4 py-6">
-  <div class="w-full max-w-md rounded-2xl border border-black/5 bg-paper p-6 shadow-2xl">
-    <div class="flex items-start justify-between gap-4">
-      <div>
-        <p class="font-mono text-xs uppercase tracking-[0.24em] text-signalDark">// Account Access</p>
-        <h3 class="font-display font-semibold text-2xl text-ink mt-2">Welcome</h3>
-        <p class="text-sm text-slate mt-2">Apple Zone</p>
-      </div>
-      <button id="closeAuthModal" type="button" class="w-9 h-9 rounded-full bg-black/5 hover:bg-black/10 text-ink flex items-center justify-center transition-colors" aria-label="Close account dialog">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
-    </div>
-
-    <div class="mt-5 flex gap-2 rounded-full bg-black/5 p-1">
-      <button id="showLoginTab" type="button" class="flex-1 rounded-full bg-signal px-4 py-2 text-sm font-semibold text-ink">Login</button>
-      <button id="showRegisterTab" type="button" class="flex-1 rounded-full bg-transparent px-4 py-2 text-sm font-semibold text-slate">Register</button>
-    </div>
-
-    <div id="loginView" class="mt-6 space-y-4">
-      <form id="loginForm" class="space-y-4">
-        <div>
-          <label class="text-xs font-mono text-slate block mb-1.5">EMAIL</label>
-          <input required name="email" type="email" placeholder="you@example.com" class="w-full rounded-lg border border-black/10 bg-white px-4 py-3 text-sm outline-none focus:border-signal/50 transition-colors">
-        </div>
-        <div>
-          <label class="text-xs font-mono text-slate block mb-1.5">PASSWORD</label>
-          <input required name="password" type="password" placeholder="Enter password" class="w-full rounded-lg border border-black/10 bg-white px-4 py-3 text-sm outline-none focus:border-signal/50 transition-colors">
-        </div>
-        <label class="flex items-center gap-2 text-sm text-slate">
-          <input name="remember" type="checkbox" class="h-4 w-4 rounded border-black/10 text-signal focus:ring-signal">
-          <span>Remember this device</span>
-        </label>
-        <button type="submit" class="w-full bg-signal hover:bg-signalDark text-ink font-semibold py-3 rounded-lg transition-colors">Log In</button>
-      </form>
-    </div>
-
-    <div id="registerView" class="mt-6 hidden space-y-4">
-      <form id="registerForm" class="space-y-4">
-        <div>
-          <label class="text-xs font-mono text-slate block mb-1.5">FULL NAME</label>
-          <input required name="name" type="text" placeholder="Your name" class="w-full rounded-lg border border-black/10 bg-white px-4 py-3 text-sm outline-none focus:border-signal/50 transition-colors">
-        </div>
-        <div>
-          <label class="text-xs font-mono text-slate block mb-1.5">EMAIL</label>
-          <input required name="email" type="email" placeholder="you@example.com" class="w-full rounded-lg border border-black/10 bg-white px-4 py-3 text-sm outline-none focus:border-signal/50 transition-colors">
-        </div>
-        <div>
-          <label class="text-xs font-mono text-slate block mb-1.5">PASSWORD</label>
-          <input required name="password" type="password" placeholder="Choose a password" class="w-full rounded-lg border border-black/10 bg-white px-4 py-3 text-sm outline-none focus:border-signal/50 transition-colors">
-        </div>
-        <button type="submit" class="w-full bg-ink hover:bg-inkSoft text-paper font-semibold py-3 rounded-lg transition-colors">Create Account</button>
-      </form>
-    </div>
-
-    <button id="logoutBtn" type="button" class="mt-4 hidden w-full rounded-lg border border-rose/20 bg-rose/10 px-4 py-2.5 text-sm font-semibold text-rose transition-colors hover:bg-rose/20">Logout</button>
-    <p id="authStatus" class="mt-4 text-sm text-center min-h-5 text-slate"></p>
-  </div>
-</div>
-
-<!-- ============ CUSTOMER DASHBOARD ============ -->
-<div id="customerDashboard" class="fixed inset-0 z-[85] hidden items-center justify-center bg-ink/70 px-4 py-6">
-  <div class="w-full max-w-5xl rounded-2xl border border-black/5 bg-paper p-5 shadow-2xl max-h-[90vh] overflow-y-auto">
-    <div class="flex flex-col gap-4 border-b border-black/10 pb-5 sm:flex-row sm:items-start sm:justify-between">
-      <div>
-        <p class="font-mono text-xs uppercase tracking-[0.24em] text-signalDark">// Customer Dashboard</p>
-        <h3 class="font-display font-semibold text-2xl text-ink mt-2">My Account</h3>
-        <p class="text-sm text-slate mt-2">Manage your profile, activity, and device enquiries here.</p>
-      </div>
-      <div class="flex flex-wrap items-center gap-2">
-        <button id="customerLogoutBtn" type="button" class="rounded-lg bg-rose px-4 py-2 text-sm font-semibold text-paper transition-colors hover:bg-rose/90">Logout</button>
-        <button id="closeCustomerDashboard" type="button" class="rounded-lg border border-black/10 bg-white px-4 py-2 text-sm font-semibold text-ink transition-colors hover:bg-black/5">Close</button>
-      </div>
-    </div>
-
-    <div class="mt-6 grid gap-6 xl:grid-cols-[0.9fr_1.1fr]">
-      <div class="rounded-2xl border border-black/5 bg-white p-5 shadow-sm">
-        <div class="flex items-center gap-3">
-          <div class="flex h-12 w-12 items-center justify-center rounded-full bg-signal/10 text-signalDark">
-            <i class="fa-solid fa-user"></i>
-          </div>
-          <div>
-            <h4 id="customerName" class="font-display font-semibold text-xl text-ink">Customer Name</h4>
-            <p id="customerEmail" class="text-sm text-slate">customer@example.com</p>
-          </div>
-        </div>
-
-        <form id="customerProfileForm" class="mt-5 space-y-4">
-          <div>
-            <label class="text-xs font-mono text-slate block mb-1.5">PHONE NUMBER</label>
-            <input name="phone" type="tel" placeholder="Enter phone number" class="w-full rounded-lg border border-black/10 bg-paper px-4 py-3 text-sm outline-none focus:border-signal/50 transition-colors">
-          </div>
-          <div>
-            <label class="text-xs font-mono text-slate block mb-1.5">ADDRESS</label>
-            <textarea name="address" rows="3" placeholder="Enter your address" class="w-full rounded-lg border border-black/10 bg-paper px-4 py-3 text-sm outline-none focus:border-signal/50 transition-colors resize-none"></textarea>
-          </div>
-          <button type="submit" class="rounded-lg bg-signal px-4 py-2.5 text-sm font-semibold text-ink transition-colors hover:bg-signalDark">Save Profile</button>
-        </form>
-      </div>
-
-      <div class="space-y-6">
-        <div class="grid gap-4 sm:grid-cols-3">
-          <div class="rounded-2xl border border-black/5 bg-white p-4 shadow-sm">
-            <p class="text-sm text-slate">Inquiries</p>
-            <p id="customerInquiriesCount" class="mt-2 font-display font-semibold text-2xl text-ink">0</p>
-          </div>
-          <div class="rounded-2xl border border-black/5 bg-white p-4 shadow-sm">
-            <p class="text-sm text-slate">Saved Items</p>
-            <p id="customerSavedCount" class="mt-2 font-display font-semibold text-2xl text-ink">0</p>
-          </div>
-          <div class="rounded-2xl border border-black/5 bg-white p-4 shadow-sm">
-            <p class="text-sm text-slate">Status</p>
-            <p id="customerStatus" class="mt-2 font-display font-semibold text-2xl text-ink">Ready</p>
-          </div>
-        </div>
-
-        <div class="rounded-2xl border border-black/5 bg-white p-5 shadow-sm">
-          <h4 class="font-display font-semibold text-xl text-ink">Recent Activity</h4>
-          <div id="customerActivityList" class="mt-4 space-y-3"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ============ ADMIN PANEL ============ -->
-<div id="adminPanel" class="fixed inset-0 z-[90] hidden items-center justify-center bg-ink/70 px-4 py-6">
-  <div class="w-full max-w-6xl rounded-2xl border border-black/5 bg-paper p-5 shadow-2xl max-h-[90vh] overflow-y-auto">
-    <div class="flex flex-col gap-4 border-b border-black/10 pb-5 sm:flex-row sm:items-start sm:justify-between">
-      <div>
-        <p class="font-mono text-xs uppercase tracking-[0.24em] text-signalDark">// Admin Dashboard</p>
-        <h3 class="font-display font-semibold text-2xl text-ink mt-2">Inventory Manager</h3>
-        <p class="text-sm text-slate mt-2">Add, edit, delete, and update device availability here.</p>
-      </div>
-      <div class="flex flex-wrap items-center gap-2">
-        <button id="adminLogoutBtn" type="button" class="rounded-lg bg-rose px-4 py-2 text-sm font-semibold text-paper transition-colors hover:bg-rose/90">Logout</button>
-        <button id="closeAdminPanel" type="button" class="rounded-lg border border-black/10 bg-white px-4 py-2 text-sm font-semibold text-ink transition-colors hover:bg-black/5">Close</button>
-      </div>
-    </div>
-
-    <div class="mt-6 grid gap-6 xl:grid-cols-[0.95fr_1.05fr]">
-      <div class="rounded-2xl border border-black/5 bg-white p-5 shadow-sm">
-        <div class="flex items-center justify-between gap-3">
-          <h4 id="productFormTitle" class="font-display font-semibold text-xl text-ink">Add New Product</h4>
-          <span class="rounded-full bg-signal/10 px-3 py-1 text-xs font-mono text-signalDark">Admin Only</span>
-        </div>
-        <form id="productForm" class="mt-5 space-y-4">
-          <input type="hidden" id="productId" name="productId">
-          <div class="grid gap-4 sm:grid-cols-2">
-            <div>
-              <label class="text-xs font-mono text-slate block mb-1.5">DEVICE NAME</label>
-              <input required name="name" type="text" placeholder="e.g. iPhone 15" class="w-full rounded-lg border border-black/10 bg-paper px-4 py-3 text-sm outline-none focus:border-signal/50 transition-colors">
-            </div>
-            <div>
-              <label class="text-xs font-mono text-slate block mb-1.5">TYPE</label>
-              <select name="type" class="w-full rounded-lg border border-black/10 bg-paper px-4 py-3 text-sm outline-none focus:border-signal/50 transition-colors">
-                <option value="iphone">iPhone</option>
-                <option value="android">Android</option>
-                <option value="macbook">MacBook</option>
-                <option value="watch">Apple Watch</option>
-                <option value="airpods">AirPods</option>
-              </select>
-            </div>
-          </div>
-          <div class="grid gap-4 sm:grid-cols-2">
-            <div>
-              <label class="text-xs font-mono text-slate block mb-1.5">STORAGE</label>
-              <input required name="storage" type="text" placeholder="128GB" class="w-full rounded-lg border border-black/10 bg-paper px-4 py-3 text-sm outline-none focus:border-signal/50 transition-colors">
-            </div>
-            <div>
-              <label class="text-xs font-mono text-slate block mb-1.5">BATTERY</label>
-              <input required name="battery" type="number" min="0" max="100" placeholder="91" class="w-full rounded-lg border border-black/10 bg-paper px-4 py-3 text-sm outline-none focus:border-signal/50 transition-colors">
-            </div>
-          </div>
-          <div class="grid gap-4 sm:grid-cols-2">
-            <div>
-              <label class="text-xs font-mono text-slate block mb-1.5">CONDITION</label>
-              <input required name="condition" type="text" placeholder="Grade A" class="w-full rounded-lg border border-black/10 bg-paper px-4 py-3 text-sm outline-none focus:border-signal/50 transition-colors">
-            </div>
-            <div>
-              <label class="text-xs font-mono text-slate block mb-1.5">PRICE</label>
-              <input required name="price" type="number" min="0" placeholder="58999" class="w-full rounded-lg border border-black/10 bg-paper px-4 py-3 text-sm outline-none focus:border-signal/50 transition-colors">
-            </div>
-          </div>
-          <div>
-            <label class="text-xs font-mono text-slate block mb-1.5">STATUS</label>
-            <select name="status" class="w-full rounded-lg border border-black/10 bg-paper px-4 py-3 text-sm outline-none focus:border-signal/50 transition-colors">
-              <option value="available">Available</option>
-              <option value="reserved">Reserved</option>
-              <option value="sold">Sold</option>
-            </select>
-          </div>
-          <div>
-            <label class="text-xs font-mono text-slate block mb-1.5">DESCRIPTION</label>
-            <textarea name="description" rows="4" placeholder="Write the features and condition details here..." class="w-full rounded-lg border border-black/10 bg-paper px-4 py-3 text-sm outline-none focus:border-signal/50 transition-colors resize-none"></textarea>
-          </div>
-          <div>
-            <label class="text-xs font-mono text-slate block mb-1.5">PRODUCT IMAGES</label>
-            <input id="productImageInput" name="image" type="file" accept="image/*" multiple class="w-full rounded-lg border border-black/10 bg-paper px-4 py-3 text-sm outline-none focus:border-signal/50 transition-colors file:mr-3 file:rounded-lg file:border-0 file:bg-signal/10 file:px-3 file:py-2 file:text-sm file:font-semibold file:text-signalDark">
-            <p class="mt-1 text-xs text-slate">You can select multiple photos for the same product.</p>
-            <div id="imagePreview" class="mt-3 hidden rounded-xl border border-dashed border-black/10 bg-paper p-3">
-              <img id="productImagePreview" class="h-32 w-full rounded-lg object-cover" alt="Product preview">
-              <div id="imagePreviewList" class="mt-2 grid grid-cols-2 gap-2"></div>
-            </div>
-          </div>
-          <div class="flex flex-wrap gap-3">
-            <button type="submit" class="rounded-lg bg-signal px-4 py-2.5 text-sm font-semibold text-ink transition-colors hover:bg-signalDark">Save Product</button>
-            <button id="cancelEditBtn" type="button" class="rounded-lg border border-black/10 bg-white px-4 py-2.5 text-sm font-semibold text-ink transition-colors hover:bg-black/5">Cancel</button>
-          </div>
-        </form>
-      </div>
-
-      <div class="rounded-2xl border border-black/5 bg-white p-5 shadow-sm">
-        <div class="flex items-center justify-between gap-3">
-          <h4 class="font-display font-semibold text-xl text-ink">Current Inventory</h4>
-          <span id="inventoryCount" class="rounded-full bg-black/5 px-3 py-1 text-xs font-mono text-slate">0 items</span>
-        </div>
-        <div id="adminInventory" class="mt-4 space-y-3"></div>
-
-        <div class="mt-6 border-t border-black/10 pt-5">
-          <h4 class="font-display font-semibold text-lg text-ink">Change Admin Password</h4>
-          <form id="adminPasswordForm" class="mt-4 space-y-3">
-            <div>
-              <label class="text-xs font-mono text-slate block mb-1.5">NEW PASSWORD</label>
-              <input required name="newPassword" type="password" placeholder="Enter new password" class="w-full rounded-lg border border-black/10 bg-paper px-4 py-3 text-sm outline-none focus:border-signal/50 transition-colors">
-            </div>
-            <div>
-              <label class="text-xs font-mono text-slate block mb-1.5">CONFIRM PASSWORD</label>
-              <input required name="confirmPassword" type="password" placeholder="Re-enter new password" class="w-full rounded-lg border border-black/10 bg-paper px-4 py-3 text-sm outline-none focus:border-signal/50 transition-colors">
-            </div>
-            <button type="submit" class="rounded-lg bg-ink px-4 py-2.5 text-sm font-semibold text-paper transition-colors hover:bg-inkSoft">Update Password</button>
-          </form>
-          <p id="adminPasswordStatus" class="mt-3 text-sm min-h-5 text-slate"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- ============ HERO ============ -->
 <section id="home" class="relative bg-ink text-paper overflow-hidden pt-16">
@@ -494,7 +252,7 @@
         <a href="#devices" class="bg-signal hover:bg-signalDark text-ink font-semibold px-6 py-3.5 rounded-lg transition-colors flex items-center gap-2">
           <i class="fa-solid fa-mobile-screen-button"></i> Buy Devices
         </a>
-        <a href="#sell" class="bg-white/10 hover:bg-white/15 border border-white/15 text-paper font-semibold px-6 py-3.5 rounded-lg transition-colors flex items-center gap-2">
+        <a href="#sell-for-cash" class="bg-white/10 hover:bg-white/15 border border-white/15 text-paper font-semibold px-6 py-3.5 rounded-lg transition-colors flex items-center gap-2">
           <i class="fa-solid fa-indian-rupee-sign"></i> Sell Your Device
         </a>
         <a href="#exchange" class="bg-white/10 hover:bg-white/15 border border-white/15 text-paper font-semibold px-6 py-3.5 rounded-lg transition-colors flex items-center gap-2">
@@ -590,7 +348,7 @@
         Our mission is simple — fair prices for sellers, verified condition for buyers, and honest service for everyone who walks in. No inflated grading, no hidden faults, no guesswork.
       </p>
 
-      <div class="mt-8 grid grid-cols-3 gap-4">
+      <div class="mt-8 grid grid-cols-2 gap-4">
         <div class="border-l-2 border-signal pl-4">
           <p class="font-display font-bold text-2xl text-ink">7-Point</p>
           <p class="text-xs text-slate font-mono mt-1">Inspection</p>
@@ -598,10 +356,6 @@
         <div class="border-l-2 border-signal pl-4">
           <p class="font-display font-bold text-2xl text-ink">100%</p>
           <p class="text-xs text-slate font-mono mt-1">IMEI Checked</p>
-        </div>
-        <div class="border-l-2 border-signal pl-4">
-          <p class="font-display font-bold text-2xl text-ink">5</p>
-          <p class="text-xs text-slate font-mono mt-1">Device Categories</p>
         </div>
       </div>
     </div>
@@ -695,6 +449,136 @@
   </div>
 </section>
 
+<!-- ============ SELL FOR CASH ============ -->
+<section id="sell-for-cash" class="bg-paper py-20 lg:py-28 border-t border-black/5">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+
+    <div class="mb-10">
+      <p class="font-mono text-xs text-signalDark tracking-widest uppercase mb-3">// Trade-In</p>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl text-ink">Sell For Cash</h2>
+      <p class="text-slate mt-3 max-w-xl">Pick what you're selling, then your brand, then tell us the details — we'll quote you instantly on WhatsApp. Fair price, same-day cash.</p>
+    </div>
+
+    <!-- Step 1: device category -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-12" id="sellCategoryGrid">
+      <button data-category="Phone" class="sell-cat-btn group bg-white border border-black/5 rounded-2xl p-4 sm:p-5 text-center lift">
+        <div class="w-14 h-14 sm:w-16 sm:h-16 mx-auto rounded-xl bg-paperDim flex items-center justify-center mb-3 group-hover:bg-signal/10 transition-colors">
+          <i class="fa-solid fa-mobile-screen-button text-2xl text-ink group-hover:text-signalDark transition-colors"></i>
+        </div>
+        <p class="font-display font-semibold text-sm text-ink">Sell Phone</p>
+      </button>
+
+      <button data-category="Laptop" class="sell-cat-btn group bg-white border border-black/5 rounded-2xl p-4 sm:p-5 text-center lift">
+        <div class="w-14 h-14 sm:w-16 sm:h-16 mx-auto rounded-xl bg-paperDim flex items-center justify-center mb-3 group-hover:bg-signal/10 transition-colors">
+          <i class="fa-solid fa-laptop text-2xl text-ink group-hover:text-signalDark transition-colors"></i>
+        </div>
+        <p class="font-display font-semibold text-sm text-ink">Sell Laptop</p>
+      </button>
+
+      <button data-category="Tablet" class="sell-cat-btn group bg-white border border-black/5 rounded-2xl p-4 sm:p-5 text-center lift">
+        <div class="w-14 h-14 sm:w-16 sm:h-16 mx-auto rounded-xl bg-paperDim flex items-center justify-center mb-3 group-hover:bg-signal/10 transition-colors">
+          <i class="fa-solid fa-tablet-screen-button text-2xl text-ink group-hover:text-signalDark transition-colors"></i>
+        </div>
+        <p class="font-display font-semibold text-sm text-ink">Sell Tablet</p>
+      </button>
+
+      <button data-category="Smartwatch" class="sell-cat-btn group bg-white border border-black/5 rounded-2xl p-4 sm:p-5 text-center lift">
+        <div class="w-14 h-14 sm:w-16 sm:h-16 mx-auto rounded-xl bg-paperDim flex items-center justify-center mb-3 group-hover:bg-signal/10 transition-colors">
+          <i class="fa-solid fa-clock text-2xl text-ink group-hover:text-signalDark transition-colors"></i>
+        </div>
+        <p class="font-display font-semibold text-sm text-ink">Sell Smartwatch</p>
+      </button>
+
+      <button id="sellMoreBtn" data-category="Other Device" class="sell-cat-btn group bg-white border border-black/5 rounded-2xl p-4 sm:p-5 text-center lift">
+        <div class="w-14 h-14 sm:w-16 sm:h-16 mx-auto rounded-xl bg-paperDim flex items-center justify-center mb-3 group-hover:bg-signal/10 transition-colors">
+          <i class="fa-solid fa-ellipsis text-2xl text-ink group-hover:text-signalDark transition-colors"></i>
+        </div>
+        <p class="font-display font-semibold text-sm text-ink">Sell More</p>
+      </button>
+    </div>
+
+    <!-- Step 2: brand picker (revealed after a category is chosen) -->
+    <div id="sellBrandPanel" class="hidden">
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <p class="font-mono text-xs text-slate">STEP 2 OF 3</p>
+          <h3 class="font-display font-bold text-xl text-ink mt-1">Which brand is your <span id="sellBrandCategoryLabel" class="text-signalDark">device</span>?</h3>
+        </div>
+        <button id="sellBrandBackBtn" type="button" class="font-mono text-xs text-slate hover:text-ink transition-colors flex items-center gap-1.5">
+          <i class="fa-solid fa-arrow-left"></i> Back
+        </button>
+      </div>
+
+      <div class="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-3" id="sellBrandGrid">
+        <!-- populated by JS, per-category brand list -->
+      </div>
+    </div>
+
+    <!-- Step 3: device details form (revealed after a brand is chosen) -->
+    <div id="sellDetailsPanel" class="hidden">
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <p class="font-mono text-xs text-slate">STEP 3 OF 3</p>
+          <h3 class="font-display font-bold text-xl text-ink mt-1">Tell us about your <span id="sellDetailsBrandLabel" class="text-signalDark">device</span></h3>
+        </div>
+        <button id="sellDetailsBackBtn" type="button" class="font-mono text-xs text-slate hover:text-ink transition-colors flex items-center gap-1.5">
+          <i class="fa-solid fa-arrow-left"></i> Back
+        </button>
+      </div>
+
+      <form id="sellDetailsForm" class="bg-white border border-black/5 rounded-2xl p-5 sm:p-6 max-w-2xl">
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label class="text-xs font-mono text-slate block mb-1.5">MODEL *</label>
+            <input required id="sellModel" type="text" placeholder="e.g. iPhone 13, 128GB" class="w-full rounded-lg border border-black/10 bg-paperDim px-4 py-3 text-sm outline-none focus:border-signal/50 transition-colors">
+          </div>
+          <div>
+            <label class="text-xs font-mono text-slate block mb-1.5">STORAGE / CAPACITY</label>
+            <input id="sellStorage" type="text" placeholder="e.g. 128GB" class="w-full rounded-lg border border-black/10 bg-paperDim px-4 py-3 text-sm outline-none focus:border-signal/50 transition-colors">
+          </div>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-4 mt-4">
+          <div>
+            <label class="text-xs font-mono text-slate block mb-1.5">CONDITION *</label>
+            <select required id="sellCondition" class="w-full rounded-lg border border-black/10 bg-paperDim px-4 py-3 text-sm outline-none focus:border-signal/50 transition-colors">
+              <option value="">Select condition</option>
+              <option value="Like New">Like New — barely used, no visible wear</option>
+              <option value="Good">Good — light wear, fully functional</option>
+              <option value="Fair">Fair — visible wear and tear, works fine</option>
+              <option value="Poor / Not Working">Poor / Not Working — damaged or faulty</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-xs font-mono text-slate block mb-1.5">YOUR EXPECTED PRICE (₹)</label>
+            <input id="sellExpectedPrice" type="number" min="0" placeholder="e.g. 25000" class="w-full rounded-lg border border-black/10 bg-paperDim px-4 py-3 text-sm outline-none focus:border-signal/50 transition-colors">
+          </div>
+        </div>
+        <div class="mt-4">
+          <label class="text-xs font-mono text-slate block mb-1.5">ANYTHING ELSE WE SHOULD KNOW?</label>
+          <textarea id="sellNotes" rows="3" placeholder="Box & accessories, warranty status, any damage, etc. (optional)" class="w-full rounded-lg border border-black/10 bg-paperDim px-4 py-3 text-sm outline-none focus:border-signal/50 transition-colors resize-none"></textarea>
+        </div>
+
+        <div class="mt-4">
+          <label class="text-xs font-mono text-slate block mb-1.5">PHOTOS OF YOUR DEVICE (OPTIONAL, BUT HELPS US QUOTE FASTER)</label>
+          <div id="sellPhotoDropZone" class="border-2 border-dashed border-black/15 rounded-xl p-5 text-center cursor-pointer transition-colors hover:border-signal/40">
+            <i class="fa-solid fa-camera text-xl text-slate/40 mb-2"></i>
+            <p class="text-sm text-slate">Drag photos here or <span class="text-signalDark font-semibold">browse files</span></p>
+            <p class="text-xs text-slate/60 mt-1 font-mono">Up to 5 photos — front, back, screen, any damage</p>
+            <input id="sellPhotoInput" type="file" accept="image/jpeg,image/png,image/webp,image/gif" multiple class="hidden">
+          </div>
+          <div id="sellPhotoPreviewGrid" class="grid grid-cols-4 sm:grid-cols-5 gap-2 mt-3"></div>
+          <p class="text-xs text-slate/60 mt-1.5 font-mono">Note: photos are attached for your reference — please also send them directly in the WhatsApp chat once it opens, since WhatsApp links can't carry image files automatically.</p>
+        </div>
+
+        <button type="submit" class="mt-5 w-full sm:w-auto bg-signal hover:bg-signalDark text-ink font-semibold text-sm px-6 py-3 rounded-lg transition-colors flex items-center justify-center gap-2">
+          <i class="fa-brands fa-whatsapp"></i> Get My Quote on WhatsApp
+        </button>
+      </form>
+    </div>
+
+  </div>
+</section>
+
 <!-- ============ SERVICES ============ -->
 <section id="services" class="bg-ink text-paper py-20 lg:py-28">
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
@@ -707,11 +591,11 @@
 
     <!-- Buy/Sell/Exchange row -->
     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-      <div id="sell" class="bg-inkSoft border border-white/10 rounded-xl p-5 lift">
+      <a href="#sell-for-cash" id="sell" class="bg-inkSoft border border-white/10 rounded-xl p-5 lift block cursor-pointer">
         <i class="fa-solid fa-tag text-signal text-xl mb-3"></i>
         <p class="font-display font-semibold">Sell Your Device</p>
         <p class="text-sm text-paper/55 mt-1.5">Instant valuation, fair cash offers, same-day payment.</p>
-      </div>
+      </a>
       <div class="bg-inkSoft border border-white/10 rounded-xl p-5 lift">
         <i class="fa-solid fa-cart-shopping text-signal text-xl mb-3"></i>
         <p class="font-display font-semibold">Purchase Pre-Owned</p>
@@ -989,6 +873,7 @@
         <p class="font-display font-semibold text-paper mb-4 text-sm tracking-wide">QUICK LINKS</p>
         <ul class="space-y-2.5 text-sm">
           <li><a href="#devices" class="hover:text-signal transition-colors">Devices</a></li>
+          <li><a href="#sell-for-cash" class="hover:text-signal transition-colors">Sell For Cash</a></li>
           <li><a href="#services" class="hover:text-signal transition-colors">Services</a></li>
           <li><a href="#why" class="hover:text-signal transition-colors">Why Us</a></li>
           <li><a href="#reviews" class="hover:text-signal transition-colors">Reviews</a></li>
@@ -1050,21 +935,17 @@
 
 <script>
 /* ============ DATA ============ */
-let DEVICES = [
-  { name:"iPhone 14 Pro", type:"iphone", storage:"128GB", battery:91, condition:"Grade A", price:58999, status:"available", icon:"fa-mobile-screen-button" },
-  { name:"iPhone 13", type:"iphone", storage:"128GB", battery:87, condition:"Grade B", price:34999, status:"available", icon:"fa-mobile-screen-button" },
-  { name:"iPhone 12", type:"iphone", storage:"64GB", battery:82, condition:"Grade B", price:24999, status:"reserved", icon:"fa-mobile-screen-button" },
-  { name:"iPhone 15", type:"iphone", storage:"256GB", battery:97, condition:"Grade A+", price:71999, status:"available", icon:"fa-mobile-screen-button" },
-  { name:"Samsung S23", type:"android", storage:"256GB", battery:90, condition:"Grade A", price:39999, status:"available", icon:"fa-mobile-screen-button" },
-  { name:"OnePlus 11", type:"android", storage:"128GB", battery:88, condition:"Grade A", price:27999, status:"sold", icon:"fa-mobile-screen-button" },
-  { name:"MacBook Air M1", type:"macbook", storage:"256GB SSD", battery:89, condition:"Grade A", price:54999, status:"available", icon:"fa-laptop" },
-  { name:"MacBook Pro 13\" M2", type:"macbook", storage:"512GB SSD", battery:94, condition:"Grade A+", price:84999, status:"available", icon:"fa-laptop" },
-  { name:"MacBook Air M2", type:"macbook", storage:"256GB SSD", battery:96, condition:"Grade A+", price:69999, status:"reserved", icon:"fa-laptop" },
-  { name:"Apple Watch SE 2", type:"watch", storage:"44mm GPS", battery:93, condition:"Grade A", price:14999, status:"available", icon:"fa-clock" },
-  { name:"Apple Watch S8", type:"watch", storage:"45mm GPS+Cell", battery:90, condition:"Grade A", price:21999, status:"available", icon:"fa-clock" },
-  { name:"AirPods Pro 2", type:"airpods", storage:"With Case", battery:85, condition:"Grade A", price:12999, status:"available", icon:"fa-headphones" },
-  { name:"AirPods 3", type:"airpods", storage:"With Case", battery:88, condition:"Grade A", price:8999, status:"sold", icon:"fa-headphones" },
-];
+// Device listings come from the live backend (added/edited via /admin) instead of being
+// hardcoded here. See /api/devices for the read-only public endpoint.
+let DEVICES = [];
+
+const ICON_BY_TYPE = {
+  iphone: 'fa-mobile-screen-button',
+  android: 'fa-mobile-screen-button',
+  macbook: 'fa-laptop',
+  watch: 'fa-clock',
+  airpods: 'fa-headphones',
+};
 
 const REVIEWS = [
   { name:"Rahul Verma", rating:5, text:"Bought a Grade A iPhone 13 — battery health was exactly as listed. IMEI report gave real peace of mind." },
@@ -1074,6 +955,21 @@ const REVIEWS = [
   { name:"Arjun Rao", rating:5, text:"Got my AirPods Pro checked for genuine parts before buying — turned out the seller had used fakes. Glad I checked." },
   { name:"Divya Menon", rating:4, text:"Quick IMEI and stolen-phone verification before I bought a second-hand iPhone. Highly recommend Apple Zone." },
 ];
+
+/* ============ FETCH DEVICES FROM BACKEND ============ */
+async function fetchDevices() {
+  try {
+    const res = await fetch('/api/devices');
+    if (!res.ok) throw new Error('Failed to load devices');
+    DEVICES = await res.json();
+    applyFilters();
+  } catch (err) {
+    grid.innerHTML = `<p class="col-span-full text-center text-slate font-mono text-sm py-12">
+      Couldn't load current listings right now. Please refresh, or reach us directly on WhatsApp.
+    </p>`;
+    console.error('Device fetch error:', err);
+  }
+}
 
 /* ============ RENDER DEVICES ============ */
 const grid = document.getElementById('deviceGrid');
@@ -1089,11 +985,12 @@ function renderDevices(list) {
   list.forEach(d => {
     const s = statusStyles[d.status];
     const card = document.createElement('div');
-    const imageSrc = Array.isArray(d.images) && d.images.length ? d.images[0] : d.image || '';
+    const icon = ICON_BY_TYPE[d.type] || 'fa-mobile-screen-button';
+    const imageSrc = Array.isArray(d.photos) && d.photos.length ? d.photos[0] : '';
     card.className = 'bg-white border border-black/5 rounded-2xl overflow-hidden lift reveal in';
     card.innerHTML = `
       <div class="h-40 bg-ink flex items-center justify-center relative overflow-hidden">
-        ${imageSrc ? `<img src="${imageSrc}" alt="${d.name}" class="w-full h-full object-cover">` : `<i class="fa-solid ${d.icon} text-5xl text-paper/20"></i>`}
+        ${imageSrc ? `<img src="${imageSrc}" alt="${d.name}" class="w-full h-full object-cover">` : `<i class="fa-solid ${icon} text-5xl text-paper/20"></i>`}
         <span class="absolute top-3 left-3 ${s.bg} ${s.text} border ${s.border} text-[11px] font-mono px-2.5 py-1 rounded-full flex items-center gap-1.5 shadow-sm font-semibold">
           <span class="w-1.5 h-1.5 rounded-full ${s.dot}"></span> ${s.label}
         </span>
@@ -1106,21 +1003,14 @@ function renderDevices(list) {
           <p class="font-display font-bold text-xl text-ink">₹${d.price.toLocaleString('en-IN')}</p>
           <a href="https://wa.me/917780708876?text=${encodeURIComponent('Hi, I\'m interested in the '+d.name+' ('+d.storage+', '+d.condition+') listed at ₹'+d.price.toLocaleString('en-IN')+'.')}"
              target="_blank" rel="noopener"
-             class="bg-signal/10 hover:bg-signal hover:text-ink text-signalDark border border-signal/30 text-xs font-semibold px-3.5 py-2 rounded-lg transition-colors flex items-center gap-1.5"
-             data-device-name="${d.name}">
+             class="bg-signal/10 hover:bg-signal hover:text-ink text-signalDark border border-signal/30 text-xs font-semibold px-3.5 py-2 rounded-lg transition-colors flex items-center gap-1.5">
             <i class="fa-brands fa-whatsapp"></i> Inquire
           </a>
         </div>
       </div>`;
-    card.querySelector('a[data-device-name]')?.addEventListener('click', () => {
-      if (currentUser && currentUser.role === 'customer') {
-        recordCustomerInquiry(d.name);
-      }
-    });
     grid.appendChild(card);
   });
 }
-renderDevices(DEVICES);
 
 /* ============ FILTERS ============ */
 const searchInput = document.getElementById('searchInput');
@@ -1167,6 +1057,232 @@ chips.forEach(chip => {
   });
 });
 
+fetchDevices();
+
+/* ============ SELL FOR CASH ============ */
+// Brand logos are loaded from local files in /assets/brands/<category>/<brand-slug>.png —
+// these are currently simple placeholders. Apple Zone should replace each file with the
+// real brand logo (same filename, same folder) — see README for the full list of filenames.
+// If a logo file is ever missing, we fall back to a plain initial-letter badge so nothing
+// looks broken.
+const BRANDS_BY_CATEGORY = {
+  Phone: [
+    { name: 'Apple', logo: 'apple.png' },
+    { name: 'Samsung', logo: 'samsung.png' },
+    { name: 'Xiaomi', logo: 'xiaomi.png' },
+    { name: 'Vivo', logo: 'vivo.png' },
+    { name: 'OnePlus', logo: 'oneplus.png' },
+    { name: 'OPPO', logo: 'oppo.png' },
+    { name: 'Realme', logo: 'realme.png' },
+    { name: 'Motorola', logo: 'motorola.png' },
+    { name: 'Nokia', logo: 'nokia.png' },
+    { name: 'Honor', logo: 'honor.png' },
+    { name: 'Google', logo: 'google.png' },
+    { name: 'POCO', logo: 'poco.png' },
+    { name: 'Infinix', logo: 'infinix.png' },
+    { name: 'Tecno', logo: 'tecno.png' },
+    { name: 'iQOO', logo: 'iqoo.png' },
+    { name: 'Nothing', logo: 'nothing.png' },
+    { name: 'Other Brand', logo: null },
+  ],
+  Laptop: [
+    { name: 'Apple', logo: 'apple.png' },
+    { name: 'Dell', logo: 'dell.png' },
+    { name: 'HP', logo: 'hp.png' },
+    { name: 'Lenovo', logo: 'lenovo.png' },
+    { name: 'Asus', logo: 'asus.png' },
+    { name: 'Acer', logo: 'acer.png' },
+    { name: 'MSI', logo: 'msi.png' },
+    { name: 'Microsoft', logo: 'microsoft.png' },
+    { name: 'Samsung', logo: 'samsung.png' },
+    { name: 'LG', logo: 'lg.png' },
+    { name: 'Other Brand', logo: null },
+  ],
+  Tablet: [
+    { name: 'Apple', logo: 'apple.png' },
+    { name: 'Samsung', logo: 'samsung.png' },
+    { name: 'Xiaomi', logo: 'xiaomi.png' },
+    { name: 'Lenovo', logo: 'lenovo.png' },
+    { name: 'OPPO', logo: 'oppo.png' },
+    { name: 'Realme', logo: 'realme.png' },
+    { name: 'Honor', logo: 'honor.png' },
+    { name: 'Microsoft', logo: 'microsoft.png' },
+    { name: 'Other Brand', logo: null },
+  ],
+  Smartwatch: [
+    { name: 'Apple', logo: 'apple.png' },
+    { name: 'Samsung', logo: 'samsung.png' },
+    { name: 'Noise', logo: 'noise.png' },
+    { name: 'boAt', logo: 'boat.png' },
+    { name: 'Fire-Boltt', logo: 'fire-boltt.png' },
+    { name: 'Garmin', logo: 'garmin.png' },
+    { name: 'Fitbit', logo: 'fitbit.png' },
+    { name: 'Amazfit', logo: 'amazfit.png' },
+    { name: 'Fossil', logo: 'fossil.png' },
+    { name: 'Other Brand', logo: null },
+  ],
+};
+
+// Maps each category name (as used in data-category) to its assets subfolder.
+const CATEGORY_FOLDER = {
+  Phone: 'phone',
+  Laptop: 'laptop',
+  Tablet: 'tablet',
+  Smartwatch: 'smartwatch',
+};
+
+const sellCategoryGrid = document.getElementById('sellCategoryGrid');
+const sellBrandPanel = document.getElementById('sellBrandPanel');
+const sellBrandGrid = document.getElementById('sellBrandGrid');
+const sellBrandCategoryLabel = document.getElementById('sellBrandCategoryLabel');
+const sellBrandBackBtn = document.getElementById('sellBrandBackBtn');
+const sellDetailsPanel = document.getElementById('sellDetailsPanel');
+const sellDetailsBrandLabel = document.getElementById('sellDetailsBrandLabel');
+const sellDetailsBackBtn = document.getElementById('sellDetailsBackBtn');
+const sellDetailsForm = document.getElementById('sellDetailsForm');
+
+let sellSelectedCategory = '';
+let sellSelectedBrand = '';
+
+function showStep(step) {
+  sellCategoryGrid.classList.toggle('hidden', step !== 1);
+  sellBrandPanel.classList.toggle('hidden', step !== 2);
+  sellDetailsPanel.classList.toggle('hidden', step !== 3);
+  const target = step === 1 ? sellCategoryGrid : step === 2 ? sellBrandPanel : sellDetailsPanel;
+  target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+/* ---- Step 3 photo upload (preview only — see note in the form about WhatsApp's link limits) ---- */
+let sellSelectedPhotos = [];
+const sellPhotoDropZone = document.getElementById('sellPhotoDropZone');
+const sellPhotoInput = document.getElementById('sellPhotoInput');
+const sellPhotoPreviewGrid = document.getElementById('sellPhotoPreviewGrid');
+
+function renderSellPhotoPreviews() {
+  sellPhotoPreviewGrid.innerHTML = sellSelectedPhotos.map((file, i) => {
+    const url = URL.createObjectURL(file);
+    return `
+      <div class="relative">
+        <img src="${url}" class="w-full aspect-square object-cover rounded-lg border border-black/10">
+        <button type="button" data-remove-photo="${i}" class="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-rose text-white text-xs flex items-center justify-center shadow" aria-label="Remove photo">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>`;
+  }).join('');
+  sellPhotoPreviewGrid.querySelectorAll('[data-remove-photo]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      sellSelectedPhotos.splice(Number(btn.dataset.removePhoto), 1);
+      renderSellPhotoPreviews();
+    });
+  });
+}
+
+function addSellPhotos(files) {
+  const imageFiles = Array.from(files).filter(f => f.type.startsWith('image/'));
+  const room = Math.max(0, 5 - sellSelectedPhotos.length);
+  sellSelectedPhotos = sellSelectedPhotos.concat(imageFiles.slice(0, room));
+  renderSellPhotoPreviews();
+}
+
+sellPhotoDropZone.addEventListener('click', () => sellPhotoInput.click());
+sellPhotoInput.addEventListener('change', () => { addSellPhotos(sellPhotoInput.files); sellPhotoInput.value = ''; });
+['dragenter', 'dragover'].forEach(evt => {
+  sellPhotoDropZone.addEventListener(evt, (e) => { e.preventDefault(); sellPhotoDropZone.classList.add('drag-over'); });
+});
+['dragleave', 'drop'].forEach(evt => {
+  sellPhotoDropZone.addEventListener(evt, (e) => { e.preventDefault(); sellPhotoDropZone.classList.remove('drag-over'); });
+});
+sellPhotoDropZone.addEventListener('drop', (e) => addSellPhotos(e.dataTransfer.files));
+
+function renderSellBrandGrid(category) {
+  const brands = BRANDS_BY_CATEGORY[category] || BRANDS_BY_CATEGORY.Phone;
+  const folder = CATEGORY_FOLDER[category] || 'phone';
+  sellBrandGrid.innerHTML = brands.map(b => `
+    <button data-brand="${b.name}" class="sell-brand-btn group bg-white border border-black/5 rounded-xl p-4 text-center lift">
+      <div class="w-12 h-12 mx-auto mb-2 flex items-center justify-center">
+        ${b.logo
+          ? `<img src="/assets/brands/${folder}/${b.logo}" alt="${b.name}" class="max-w-full max-h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+             <i class="fa-solid fa-mobile-screen-button text-lg text-ink" style="display:none;"></i>`
+          : `<i class="fa-solid fa-ellipsis text-lg text-ink"></i>`}
+      </div>
+      <span class="font-mono text-xs text-slate group-hover:text-ink transition-colors">${b.name}</span>
+    </button>`).join('');
+
+  sellBrandGrid.querySelectorAll('.sell-brand-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      sellSelectedBrand = btn.dataset.brand;
+      sellDetailsBrandLabel.textContent = `${sellSelectedBrand} ${sellSelectedCategory}`;
+      sellDetailsForm.reset();
+      sellSelectedPhotos = [];
+      renderSellPhotoPreviews();
+      showStep(3);
+    });
+  });
+}
+
+document.querySelectorAll('.sell-cat-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const category = btn.dataset.category;
+    sellSelectedCategory = category;
+
+    // "Sell More" has no specific brand list worth showing — go straight to WhatsApp.
+    if (btn.id === 'sellMoreBtn') {
+      const message = `Hi, I'd like to sell a device that's not listed on your site. Can you help me get a quote?`;
+      window.open(`https://wa.me/917780708876?text=${encodeURIComponent(message)}`, '_blank', 'noopener');
+      return;
+    }
+
+    sellBrandCategoryLabel.textContent = category;
+    renderSellBrandGrid(category);
+    showStep(2);
+  });
+});
+
+sellBrandBackBtn.addEventListener('click', () => showStep(1));
+sellDetailsBackBtn.addEventListener('click', () => showStep(2));
+
+sellDetailsForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const model = document.getElementById('sellModel').value.trim();
+  const storage = document.getElementById('sellStorage').value.trim();
+  const condition = document.getElementById('sellCondition').value;
+  const expectedPrice = document.getElementById('sellExpectedPrice').value.trim();
+  const notes = document.getElementById('sellNotes').value.trim();
+
+  let message = `Hi, I'd like to sell my ${sellSelectedBrand} ${sellSelectedCategory}.\n`;
+  message += `Model: ${model}\n`;
+  if (storage) message += `Storage/Capacity: ${storage}\n`;
+  message += `Condition: ${condition}\n`;
+  if (expectedPrice) message += `My expected price: ₹${Number(expectedPrice).toLocaleString('en-IN')}\n`;
+  if (notes) message += `Additional notes: ${notes}\n`;
+  if (sellSelectedPhotos.length > 0) {
+    message += `\n(I have ${sellSelectedPhotos.length} photo${sellSelectedPhotos.length === 1 ? '' : 's'} of the device ready — sending them right after this message.)\n`;
+  }
+  message += `\nCan you give me a quote?`;
+
+  window.open(`https://wa.me/917780708876?text=${encodeURIComponent(message)}`, '_blank', 'noopener');
+
+  if (sellSelectedPhotos.length > 0) {
+    toastNote('Now open WhatsApp and attach your photos in the chat — links can\'t carry images automatically.');
+  }
+});
+
+// Tiny reusable toast for short confirmations on this page (separate from the contact form's
+// own status text, since this one needs to show up over the Sell For Cash section).
+function toastNote(text) {
+  let el = document.getElementById('sellToast');
+  if (!el) {
+    el = document.createElement('div');
+    el.id = 'sellToast';
+    el.className = 'fixed bottom-5 left-1/2 -translate-x-1/2 bg-ink text-paper px-5 py-3 rounded-lg shadow-xl font-mono text-xs z-50 max-w-[90vw] text-center transition-opacity';
+    document.body.appendChild(el);
+  }
+  el.textContent = text;
+  el.style.opacity = '1';
+  clearTimeout(el._t);
+  el._t = setTimeout(() => { el.style.opacity = '0'; }, 4500);
+}
+
 /* ============ RENDER TESTIMONIALS TICKER ============ */
 const tickerTrack = document.getElementById('tickerTrack');
 function starString(n) {
@@ -1193,563 +1309,6 @@ const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
   navbar.classList.toggle('shadow-lg', window.scrollY > 10);
 });
-
-/* ============ AUTH SYSTEM ============ */
-const authModal = document.getElementById('authModal');
-const closeAuthModalBtn = document.getElementById('closeAuthModal');
-const headerAccountBtn = document.getElementById('headerAccountBtn');
-const mobileAccountBtn = document.getElementById('mobileAccountBtn');
-const loginView = document.getElementById('loginView');
-const registerView = document.getElementById('registerView');
-const showLoginTab = document.getElementById('showLoginTab');
-const showRegisterTab = document.getElementById('showRegisterTab');
-const loginForm = document.getElementById('loginForm');
-const registerForm = document.getElementById('registerForm');
-const authStatus = document.getElementById('authStatus');
-const logoutBtn = document.getElementById('logoutBtn');
-const customerLogoutBtn = document.getElementById('customerLogoutBtn');
-const adminLogoutBtn = document.getElementById('adminLogoutBtn');
-const customerDashboard = document.getElementById('customerDashboard');
-const closeCustomerDashboardBtn = document.getElementById('closeCustomerDashboard');
-const customerProfileForm = document.getElementById('customerProfileForm');
-const customerName = document.getElementById('customerName');
-const customerEmail = document.getElementById('customerEmail');
-const customerInquiriesCount = document.getElementById('customerInquiriesCount');
-const customerSavedCount = document.getElementById('customerSavedCount');
-const customerStatus = document.getElementById('customerStatus');
-const customerActivityList = document.getElementById('customerActivityList');
-const adminPanel = document.getElementById('adminPanel');
-const closeAdminPanelBtn = document.getElementById('closeAdminPanel');
-const productForm = document.getElementById('productForm');
-const productFormTitle = document.getElementById('productFormTitle');
-const productIdInput = document.getElementById('productId');
-const productImageInput = document.getElementById('productImageInput');
-const imagePreview = document.getElementById('imagePreview');
-const productImagePreview = document.getElementById('productImagePreview');
-const adminInventory = document.getElementById('adminInventory');
-const inventoryCount = document.getElementById('inventoryCount');
-const adminPasswordForm = document.getElementById('adminPasswordForm');
-const adminPasswordStatus = document.getElementById('adminPasswordStatus');
-const cancelEditBtn = document.getElementById('cancelEditBtn');
-const USERS_STORAGE_KEY = 'appleZoneUsers';
-const CURRENT_USER_KEY = 'appleZoneCurrentUser';
-const REMEMBERED_USER_KEY = 'appleZoneRememberedUser';
-const PRODUCTS_STORAGE_KEY = 'appleZoneProducts';
-const ADMIN_CODE = 'APPLEZONEADMIN';
-let users = [];
-let currentUser = null;
-let editingProductId = null;
-let pendingImageData = [];
-
-function loadUsers() {
-  try {
-    const stored = JSON.parse(localStorage.getItem(USERS_STORAGE_KEY) || 'null');
-    if (Array.isArray(stored) && stored.length) {
-      return stored;
-    }
-  } catch (err) {
-    console.warn('Unable to load users', err);
-  }
-  const defaultUsers = [
-    { id: 'admin-1', name: 'Admin', email: 'admin@applezone.com', password: 'admin123', role: 'admin' },
-    { id: 'cust-1', name: 'Customer', email: 'customer@applezone.com', password: 'customer123', role: 'customer' },
-  ];
-  localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(defaultUsers));
-  return defaultUsers;
-}
-
-function loadProducts() {
-  try {
-    const stored = JSON.parse(localStorage.getItem(PRODUCTS_STORAGE_KEY) || 'null');
-    if (Array.isArray(stored) && stored.length) {
-      return stored;
-    }
-  } catch (err) {
-    console.warn('Unable to load products', err);
-  }
-  const sampleProducts = [
-    { id: 'p1', name: 'iPhone 14 Pro', type: 'iphone', storage: '128GB', battery: 91, condition: 'Grade A', price: 58999, status: 'available', icon: 'fa-mobile-screen-button', description: 'Verified display, battery above 90%, and original parts.' },
-    { id: 'p2', name: 'MacBook Air M1', type: 'macbook', storage: '256GB SSD', battery: 89, condition: 'Grade A', price: 54999, status: 'available', icon: 'fa-laptop', description: 'Lightweight ultrabook with excellent battery and clean keyboard.' },
-    { id: 'p3', name: 'Apple Watch SE 2', type: 'watch', storage: '44mm GPS', battery: 93, condition: 'Grade A', price: 14999, status: 'reserved', icon: 'fa-clock', description: 'Great for fitness tracking and daily notifications.' },
-  ];
-  localStorage.setItem(PRODUCTS_STORAGE_KEY, JSON.stringify(sampleProducts));
-  return sampleProducts;
-}
-
-function saveUsers() {
-  localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(users));
-}
-
-function saveProducts() {
-  localStorage.setItem(PRODUCTS_STORAGE_KEY, JSON.stringify(DEVICES));
-}
-
-function updateAccountButton(user) {
-  if (!headerAccountBtn) return;
-  if (user) {
-    const label = user.role === 'admin' ? 'Admin Panel' : 'My Account';
-    const icon = user.role === 'admin' ? 'fa-user-shield' : 'fa-user';
-    headerAccountBtn.innerHTML = `<i class="fa-solid ${icon}"></i><span>${label}</span>`;
-  } else {
-    headerAccountBtn.innerHTML = '<i class="fa-solid fa-user-circle"></i><span>Login / Register</span>';
-  }
-}
-
-function logoutUser(event) {
-  if (event) event.preventDefault();
-  currentUser = null;
-  localStorage.removeItem(CURRENT_USER_KEY);
-  localStorage.removeItem(REMEMBERED_USER_KEY);
-  updateAccountButton(null);
-  closeAdminPanelView();
-  closeCustomerDashboardView();
-  closeAuthModal();
-  if (logoutBtn) {
-    logoutBtn.classList.add('hidden');
-  }
-  if (authStatus) {
-    authStatus.textContent = 'You have been logged out.';
-    authStatus.className = 'mt-4 text-sm text-center min-h-5 text-signal';
-  }
-}
-
-function openCustomerDashboard() {
-  if (!currentUser || currentUser.role === 'admin') return;
-  customerDashboard.classList.remove('hidden');
-  customerDashboard.classList.add('flex');
-  document.body.classList.add('overflow-hidden');
-  renderCustomerDashboard();
-}
-
-function closeCustomerDashboardView() {
-  customerDashboard.classList.add('hidden');
-  customerDashboard.classList.remove('flex');
-  document.body.classList.remove('overflow-hidden');
-}
-
-function renderCustomerDashboard() {
-  if (!currentUser) return;
-  const profile = currentUser.profile || {};
-  customerName.textContent = currentUser.name || 'Customer';
-  customerEmail.textContent = currentUser.email || '';
-  if (customerProfileForm) {
-    customerProfileForm.querySelector('[name="phone"]').value = profile.phone || '';
-    customerProfileForm.querySelector('[name="address"]').value = profile.address || '';
-  }
-  const inquiryCount = Array.isArray(currentUser.activity) ? currentUser.activity.filter(item => item.type === 'inquiry').length : 0;
-  customerInquiriesCount.textContent = inquiryCount;
-  customerSavedCount.textContent = currentUser.savedItems || 0;
-  customerStatus.textContent = inquiryCount > 0 ? 'Active' : 'Ready';
-
-  const activity = Array.isArray(currentUser.activity) && currentUser.activity.length
-    ? currentUser.activity.slice().reverse()
-    : [{ type: 'info', text: 'Welcome to Apple Zone. Start exploring devices.' }];
-  customerActivityList.innerHTML = activity.map(item => `
-    <div class="rounded-xl border border-black/10 bg-paper px-3 py-3 text-sm text-slate">
-      <p class="font-semibold text-ink">${item.type === 'inquiry' ? 'Inquiry' : 'Update'}</p>
-      <p class="mt-1">${item.text}</p>
-    </div>
-  `).join('');
-}
-
-function saveCustomerProfile(event) {
-  event.preventDefault();
-  if (!currentUser) return;
-  const formData = new FormData(customerProfileForm);
-  const profile = {
-    phone: String(formData.get('phone') || '').trim(),
-    address: String(formData.get('address') || '').trim(),
-  };
-  currentUser.profile = profile;
-  const userIndex = users.findIndex(user => user.id === currentUser.id);
-  if (userIndex >= 0) {
-    users[userIndex] = { ...users[userIndex], ...currentUser };
-  }
-  saveUsers();
-  localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(currentUser));
-  renderCustomerDashboard();
-}
-
-function recordCustomerInquiry(deviceName) {
-  if (!currentUser || currentUser.role !== 'customer') return;
-  const activity = Array.isArray(currentUser.activity) ? currentUser.activity : [];
-  activity.push({ type: 'inquiry', text: `You requested about ${deviceName}.` });
-  currentUser.activity = activity;
-  const userIndex = users.findIndex(user => user.id === currentUser.id);
-  if (userIndex >= 0) {
-    users[userIndex] = { ...users[userIndex], ...currentUser };
-  }
-  saveUsers();
-  localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(currentUser));
-  if (customerDashboard && !customerDashboard.classList.contains('hidden')) {
-    renderCustomerDashboard();
-  }
-}
-
-function openAuthModal() {
-  authModal.classList.remove('hidden');
-  authModal.classList.add('flex');
-  document.body.classList.add('overflow-hidden');
-  authStatus.textContent = '';
-  authStatus.className = 'mt-4 text-sm text-center min-h-5 text-slate';
-  if (logoutBtn) {
-    logoutBtn.classList.toggle('hidden', !currentUser);
-  }
-  showAuthView('login');
-}
-
-function closeAuthModal() {
-  authModal.classList.add('hidden');
-  authModal.classList.remove('flex');
-  document.body.classList.remove('overflow-hidden');
-}
-
-function showAuthView(mode) {
-  const isLogin = mode === 'login';
-  loginView.classList.toggle('hidden', !isLogin);
-  registerView.classList.toggle('hidden', isLogin);
-  showLoginTab.className = `flex-1 rounded-full px-4 py-2 text-sm font-semibold ${isLogin ? 'bg-signal text-ink' : 'bg-transparent text-slate'}`;
-  showRegisterTab.className = `flex-1 rounded-full px-4 py-2 text-sm font-semibold ${isLogin ? 'bg-transparent text-slate' : 'bg-signal text-ink'}`;
-}
-
-function openAdminPanel() {
-  if (!currentUser || currentUser.role !== 'admin') {
-    authStatus.textContent = 'Admin access is required.';
-    authStatus.className = 'mt-4 text-sm text-center min-h-5 text-rose';
-    openAuthModal();
-    return;
-  }
-  adminPanel.classList.remove('hidden');
-  adminPanel.classList.add('flex');
-  document.body.classList.add('overflow-hidden');
-  renderAdminInventory();
-}
-
-function closeAdminPanelView() {
-  adminPanel.classList.add('hidden');
-  adminPanel.classList.remove('flex');
-  document.body.classList.remove('overflow-hidden');
-}
-
-function resetProductForm() {
-  productForm.reset();
-  editingProductId = null;
-  productIdInput.value = '';
-  pendingImageData = [];
-  if (productImageInput) productImageInput.value = '';
-  if (productImagePreview) productImagePreview.src = '';
-  const previewList = document.getElementById('imagePreviewList');
-  if (previewList) previewList.innerHTML = '';
-  if (imagePreview) imagePreview.classList.add('hidden');
-  productFormTitle.textContent = 'Add New Product';
-}
-
-function renderImagePreview() {
-  const previewList = document.getElementById('imagePreviewList');
-  if (!imagePreview) return;
-
-  if (!pendingImageData.length) {
-    if (productImagePreview) productImagePreview.src = '';
-    if (previewList) previewList.innerHTML = '';
-    imagePreview.classList.add('hidden');
-    return;
-  }
-
-  if (productImagePreview) productImagePreview.src = pendingImageData[0];
-  if (previewList) {
-    previewList.innerHTML = pendingImageData.slice(1).map(src => `
-      <div class="overflow-hidden rounded-lg border border-black/10 bg-white">
-        <img src="${src}" alt="Additional product preview" class="h-20 w-full object-cover">
-      </div>
-    `).join('');
-  }
-  imagePreview.classList.remove('hidden');
-}
-
-function handleImageSelection(event) {
-  const files = Array.from(event.target.files || []);
-  if (!files.length) {
-    pendingImageData = [];
-    renderImagePreview();
-    return;
-  }
-
-  const readers = [];
-  pendingImageData = [];
-
-  files.forEach(file => {
-    const reader = new FileReader();
-    reader.onload = () => {
-      pendingImageData.push(reader.result);
-      if (pendingImageData.length === files.length) {
-        renderImagePreview();
-      }
-    };
-    reader.readAsDataURL(file);
-    readers.push(reader);
-  });
-}
-
-function renderAdminInventory() {
-  inventoryCount.textContent = `${DEVICES.length} items`;
-  if (!DEVICES.length) {
-    adminInventory.innerHTML = '<p class="rounded-xl border border-dashed border-black/10 bg-paper px-4 py-6 text-sm text-slate">No products yet. Add one using the form.</p>';
-    return;
-  }
-
-  adminInventory.innerHTML = DEVICES.map(product => {
-    const statusClasses = {
-      available: 'bg-signal/10 text-signalDark',
-      reserved: 'bg-amber/10 text-amber',
-      sold: 'bg-rose/10 text-rose',
-    };
-    const previewImage = Array.isArray(product.images) && product.images.length ? product.images[0] : product.image || '';
-    return `
-      <div class="rounded-2xl border border-black/10 bg-paper p-4">
-        <div class="flex items-start gap-3">
-          ${previewImage ? `<img src="${previewImage}" alt="${product.name}" class="h-16 w-20 rounded-xl object-cover border border-black/10">` : `<div class="flex h-16 w-20 items-center justify-center rounded-xl border border-black/10 bg-black/5 text-slate"><i class="fa-solid fa-image text-lg"></i></div>`}
-          <div class="flex-1">
-            <div class="flex items-start justify-between gap-3">
-              <div>
-                <p class="font-display font-semibold text-ink">${product.name}</p>
-                <p class="mt-1 text-sm text-slate">${product.storage} • ${product.condition} • ₹${Number(product.price).toLocaleString('en-IN')}</p>
-              </div>
-              <span class="rounded-full px-2.5 py-1 text-[11px] font-mono ${statusClasses[product.status] || 'bg-black/5 text-slate'}">${product.status}</span>
-            </div>
-            <p class="mt-2 text-sm text-slate">${product.description || 'No description yet.'}</p>
-            <div class="mt-3 flex flex-wrap gap-2">
-              <button data-action="edit" data-id="${product.id}" class="rounded-lg border border-black/10 bg-white px-3 py-2 text-sm font-semibold text-ink">Edit</button>
-              <button data-action="delete" data-id="${product.id}" class="rounded-lg bg-rose px-3 py-2 text-sm font-semibold text-paper">Delete</button>
-            </div>
-          </div>
-        </div>
-      </div>`;
-  }).join('');
-
-  adminInventory.querySelectorAll('button[data-action]').forEach(button => {
-    button.addEventListener('click', () => {
-      const action = button.getAttribute('data-action');
-      const id = button.getAttribute('data-id');
-      if (action === 'edit') {
-        const product = DEVICES.find(item => item.id === id);
-        if (product) {
-          editingProductId = id;
-          productFormTitle.textContent = 'Edit Product';
-          productIdInput.value = product.id;
-          productForm.querySelector('[name="name"]').value = product.name || '';
-          productForm.querySelector('[name="type"]').value = product.type || 'iphone';
-          productForm.querySelector('[name="storage"]').value = product.storage || '';
-          productForm.querySelector('[name="battery"]').value = product.battery || '';
-          productForm.querySelector('[name="condition"]').value = product.condition || '';
-          productForm.querySelector('[name="price"]').value = product.price || '';
-          productForm.querySelector('[name="status"]').value = product.status || 'available';
-          productForm.querySelector('[name="description"]').value = product.description || '';
-          pendingImageData = Array.isArray(product.images) && product.images.length ? [...product.images] : (product.image ? [product.image] : []);
-          renderImagePreview();
-          productForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      } else if (action === 'delete') {
-        DEVICES = DEVICES.filter(item => item.id !== id);
-        saveProducts();
-        renderAdminInventory();
-        renderDevices(DEVICES);
-      }
-    });
-  });
-}
-
-users = loadUsers();
-DEVICES = loadProducts();
-const rememberedUser = JSON.parse(localStorage.getItem(REMEMBERED_USER_KEY) || 'null');
-const savedSessionUser = JSON.parse(localStorage.getItem(CURRENT_USER_KEY) || 'null');
-currentUser = rememberedUser || savedSessionUser;
-if (!rememberedUser && savedSessionUser) {
-  localStorage.removeItem(CURRENT_USER_KEY);
-}
-if (currentUser) {
-  localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(currentUser));
-}
-updateAccountButton(currentUser);
-
-headerAccountBtn?.addEventListener('click', () => {
-  if (currentUser && currentUser.role === 'admin') {
-    openAdminPanel();
-    return;
-  }
-
-  if (currentUser) {
-    openCustomerDashboard();
-    return;
-  }
-
-  authStatus.textContent = '';
-  authStatus.className = 'mt-4 text-sm text-center min-h-5 text-slate';
-  openAuthModal();
-});
-
-mobileAccountBtn?.addEventListener('click', () => {
-  mobileMenu.classList.add('hidden');
-  menuBtn.setAttribute('aria-expanded', 'false');
-  menuBtn.querySelector('i').className = 'fa-solid fa-bars text-xl';
-  if (currentUser && currentUser.role === 'admin') {
-    openAdminPanel();
-    return;
-  }
-
-  if (currentUser) {
-    openCustomerDashboard();
-    return;
-  }
-
-  authStatus.textContent = '';
-  authStatus.className = 'mt-4 text-sm text-center min-h-5 text-slate';
-  openAuthModal();
-});
-
-closeAuthModalBtn?.addEventListener('click', closeAuthModal);
-authModal?.addEventListener('click', (event) => {
-  if (event.target === authModal) closeAuthModal();
-});
-showLoginTab?.addEventListener('click', () => showAuthView('login'));
-showRegisterTab?.addEventListener('click', () => showAuthView('register'));
-logoutBtn?.addEventListener('click', logoutUser);
-customerLogoutBtn?.addEventListener('click', logoutUser);
-adminLogoutBtn?.addEventListener('click', logoutUser);
-closeCustomerDashboardBtn?.addEventListener('click', closeCustomerDashboardView);
-customerProfileForm?.addEventListener('submit', saveCustomerProfile);
-
-loginForm?.addEventListener('submit', (event) => {
-  event.preventDefault();
-  const formData = new FormData(loginForm);
-  const email = String(formData.get('email') || '').trim().toLowerCase();
-  const password = String(formData.get('password') || '').trim();
-  const rememberDevice = Boolean(formData.get('remember'));
-  const matchedUser = users.find(user => user.email.toLowerCase() === email && user.password === password);
-
-  if (!matchedUser) {
-    authStatus.textContent = 'Invalid email or password.';
-    authStatus.className = 'mt-4 text-sm text-center min-h-5 text-rose';
-    return;
-  }
-
-  currentUser = matchedUser;
-  if (rememberDevice) {
-    localStorage.setItem(REMEMBERED_USER_KEY, JSON.stringify(currentUser));
-    localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(currentUser));
-  } else {
-    localStorage.removeItem(REMEMBERED_USER_KEY);
-    localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(currentUser));
-  }
-  updateAccountButton(currentUser);
-  authStatus.textContent = matchedUser.role === 'admin' ? 'Welcome admin.' : 'Login successful.';
-  authStatus.className = 'mt-4 text-sm text-center min-h-5 text-signal';
-  loginForm.reset();
-  closeAuthModal();
-});
-
-registerForm?.addEventListener('submit', (event) => {
-  event.preventDefault();
-  const formData = new FormData(registerForm);
-  const name = String(formData.get('name') || '').trim();
-  const email = String(formData.get('email') || '').trim().toLowerCase();
-  const password = String(formData.get('password') || '').trim();
-
-  if (!name || !email || !password) {
-    authStatus.textContent = 'Please complete all required fields.';
-    authStatus.className = 'mt-4 text-sm text-center min-h-5 text-rose';
-    return;
-  }
-
-  if (users.some(user => user.email.toLowerCase() === email)) {
-    authStatus.textContent = 'This email is already registered.';
-    authStatus.className = 'mt-4 text-sm text-center min-h-5 text-rose';
-    return;
-  }
-
-  const newUser = { id: `user-${Date.now()}`, name, email, password, role: 'customer' };
-  users.push(newUser);
-  saveUsers();
-  currentUser = newUser;
-  localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(currentUser));
-  localStorage.removeItem(REMEMBERED_USER_KEY);
-  updateAccountButton(currentUser);
-  authStatus.textContent = 'Account created successfully.';
-  authStatus.className = 'mt-4 text-sm text-center min-h-5 text-signal';
-  registerForm.reset();
-  closeAuthModal();
-});
-
-productForm?.addEventListener('submit', (event) => {
-  event.preventDefault();
-  const formData = new FormData(productForm);
-  const imageUrls = Array.isArray(pendingImageData) ? pendingImageData : (pendingImageData ? [pendingImageData] : []);
-  const payload = {
-    id: productIdInput.value || `p-${Date.now()}`,
-    name: String(formData.get('name') || '').trim(),
-    type: String(formData.get('type') || 'iphone'),
-    storage: String(formData.get('storage') || '').trim(),
-    battery: Number(formData.get('battery') || 0),
-    condition: String(formData.get('condition') || '').trim(),
-    price: Number(formData.get('price') || 0),
-    status: String(formData.get('status') || 'available'),
-    description: String(formData.get('description') || '').trim(),
-    image: imageUrls[0] || '',
-    images: imageUrls,
-    icon: 'fa-mobile-screen-button',
-  };
-
-  if (!payload.name || !payload.storage || !payload.condition || !payload.price) {
-    authStatus.textContent = 'Please complete the required product fields.';
-    authStatus.className = 'mt-4 text-sm text-center min-h-5 text-rose';
-    return;
-  }
-
-  if (editingProductId) {
-    DEVICES = DEVICES.map(item => item.id === editingProductId ? { ...item, ...payload } : item);
-  } else {
-    DEVICES = [payload, ...DEVICES];
-  }
-
-  saveProducts();
-  renderAdminInventory();
-  renderDevices(DEVICES);
-  resetProductForm();
-});
-
-productImageInput?.addEventListener('change', handleImageSelection);
-adminPasswordForm?.addEventListener('submit', (event) => {
-  event.preventDefault();
-  const formData = new FormData(adminPasswordForm);
-  const newPassword = String(formData.get('newPassword') || '').trim();
-  const confirmPassword = String(formData.get('confirmPassword') || '').trim();
-
-  if (!newPassword || !confirmPassword) {
-    adminPasswordStatus.textContent = 'Please enter both password fields.';
-    adminPasswordStatus.className = 'mt-3 text-sm min-h-5 text-rose';
-    return;
-  }
-
-  if (newPassword !== confirmPassword) {
-    adminPasswordStatus.textContent = 'Passwords do not match.';
-    adminPasswordStatus.className = 'mt-3 text-sm min-h-5 text-rose';
-    return;
-  }
-
-  const adminUser = users.find(user => user.role === 'admin');
-  if (!adminUser) {
-    adminPasswordStatus.textContent = 'Admin account not found.';
-    adminPasswordStatus.className = 'mt-3 text-sm min-h-5 text-rose';
-    return;
-  }
-
-  adminUser.password = newPassword;
-  saveUsers();
-  adminPasswordForm.reset();
-  adminPasswordStatus.textContent = 'Admin password updated successfully.';
-  adminPasswordStatus.className = 'mt-3 text-sm min-h-5 text-signal';
-});
-cancelEditBtn?.addEventListener('click', resetProductForm);
-closeAdminPanelBtn?.addEventListener('click', closeAdminPanelView);
 
 /* ============ NAVBAR & MOBILE MENU ============ */
 const menuBtn = document.getElementById('menuBtn');
