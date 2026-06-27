@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — Apple Zone Admin</title>
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink: '#11151C', inkSoft: '#1B2128', paper: '#F7F5F1', paperDim: '#EFEBE3',
+          signal: '#2BB673', signalDark: '#1F8F5A', amber: '#E8A33D', rose: '#D8604A', slate: '#5B6472',
+        },
+        fontFamily: {
+          display: ['"Space Grotesk"', 'sans-serif'],
+          body: ['Inter', 'sans-serif'],
+          mono: ['"JetBrains Mono"', 'monospace'],
+        },
+      }
+    }
+  }
+</script>
+<style>
+  body { font-family: 'Inter', sans-serif; background-color: #F7F5F1; }
+  .font-display { font-family: 'Space Grotesk', sans-serif; }
+  .font-mono { font-family: 'JetBrains Mono', monospace; }
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: 2px solid #2BB673; outline-offset: 2px; border-radius: 2px;
+  }
+  .modal-overlay { background: rgba(17,21,28,0.6); }
+  .photo-thumb { aspect-ratio: 1; object-fit: cover; }
+  .drag-over { border-color: #2BB673 !important; background: rgba(43,182,115,0.08) !important; }
+</style>
+</head>
+<body class="text-ink antialiased">
+
+<!-- ============ TOP BAR ============ -->
+<header class="bg-ink text-paper sticky top-0 z-40 border-b border-white/10">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
+    <div class="flex items-center gap-2.5">
+      <span class="w-9 h-9 rounded-lg bg-signal/15 border border-signal/30 flex items-center justify-center font-mono text-signal font-bold text-sm">AZ</span>
+      <span class="font-display font-semibold text-lg tracking-tight">Apple Zone Admin</span>
+    </div>
+    <div class="flex items-center gap-4">
+      <span class="font-mono text-xs text-paper/50 hidden sm:inline" id="loggedInAs"></span>
+      <a href="/" target="_blank" class="text-xs font-mono text-paper/60 hover:text-signal transition-colors flex items-center gap-1.5">
+        <i class="fa-solid fa-arrow-up-right-from-square"></i> View site
+      </a>
+      <button id="logoutBtn" class="bg-white/10 hover:bg-white/15 text-paper text-xs font-semibold px-4 py-2 rounded-lg transition-colors flex items-center gap-1.5">
+        <i class="fa-solid fa-right-from-bracket"></i> Log Out
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-5 sm:px-8 py-8">
+
+  <!-- ============ HEADER ROW ============ -->
+  <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
+    <div>
+      <p class="font-mono text-xs text-signalDark tracking-widest uppercase mb-1">// Inventory Manager</p>
+      <h1 class="font-display font-bold text-2xl sm:text-3xl text-ink">Device Listings</h1>
+    </div>
+    <button id="addDeviceBtn" class="bg-signal hover:bg-signalDark text-ink font-semibold text-sm px-5 py-3 rounded-lg transition-colors flex items-center gap-2">
+      <i class="fa-solid fa-plus"></i> Add Device
+    </button>
+  </div>
+
+  <!-- ============ STATS ROW ============ -->
+  <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8" id="statsRow"></div>
+
+  <!-- ============ SEARCH ============ -->
+  <div class="mb-5">
+    <div class="relative max-w-sm">
+      <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate/50 text-sm"></i>
+      <input id="searchInput" type="text" placeholder="Search listings..."
+        class="w-full pl-11 pr-4 py-2.5 rounded-lg bg-white border border-black/10 text-sm outline-none focus:border-signal/50 transition-colors">
+    </div>
+  </div>
+
+  <!-- ============ DEVICE TABLE ============ -->
+  <div class="bg-white border border-black/5 rounded-2xl overflow-hidden">
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead class="bg-paperDim border-b border-black/5">
+          <tr class="text-left font-mono text-xs text-slate uppercase tracking-wide">
+            <th class="px-5 py-3.5">Photo</th>
+            <th class="px-5 py-3.5">Device</th>
+            <th class="px-5 py-3.5">Type</th>
+            <th class="px-5 py-3.5">Battery</th>
+            <th class="px-5 py-3.5">Price</th>
+            <th class="px-5 py-3.5">Status</th>
+            <th class="px-5 py-3.5 text-right">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="deviceTableBody"></tbody>
+      </table>
+    </div>
+    <p id="emptyState" class="hidden text-center text-slate py-16 font-mono text-sm">No devices yet — click "Add Device" to create your first listing.</p>
+  </div>
+
+</main>
+
+<!-- ============ ADD/EDIT MODAL ============ -->
+<div id="deviceModalOverlay" class="hidden fixed inset-0 modal-overlay z-50 flex items-center justify-center p-4 overflow-y-auto">
+  <div class="bg-paper rounded-2xl max-w-2xl w-full my-8 max-h-[90vh] overflow-y-auto">
+    <div class="flex items-center justify-between px-6 py-4 border-b border-black/10 sticky top-0 bg-paper z-10">
+      <h2 id="modalTitle" class="font-display font-bold text-lg text-ink">Add Device</h2>
+      <button id="closeModalBtn" class="w-9 h-9 rounded-lg hover:bg-black/5 flex items-center justify-center transition-colors" aria-label="Close">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+    </div>
+
+    <form id="deviceForm" class="p-6 space-y-5">
+      <input type="hidden" id="deviceId" name="id">
+      <input type="hidden" id="existingPhotos" name="existingPhotos" value="[]">
+
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div>
+          <label class="text-xs font-mono text-slate block mb-1.5">DEVICE NAME *</label>
+          <input required id="fieldName" name="name" type="text" placeholder="e.g. iPhone 14 Pro"
+            class="w-full bg-white border border-black/10 rounded-lg px-4 py-3 text-sm outline-none focus:border-signal/50 transition-colors">
+        </div>
+        <div>
+          <label class="text-xs font-mono text-slate block mb-1.5">TYPE *</label>
+          <select required id="fieldType" name="type" class="w-full bg-white border border-black/10 rounded-lg px-4 py-3 text-sm outline-none focus:border-signal/50 transition-colors">
+            <option value="iphone">iPhone</option>
+            <option value="android">Android Phone</option>
+            <option value="macbook">MacBook</option>
+            <option value="watch">Apple Watch</option>
+            <option value="airpods">AirPods</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div>
+          <label class="text-xs font-mono text-slate block mb-1.5">STORAGE / SPEC *</label>
+          <input required id="fieldStorage" name="storage" type="text" placeholder="e.g. 128GB, Deep Purple"
+            class="w-full bg-white border border-black/10 rounded-lg px-4 py-3 text-sm outline-none focus:border-signal/50 transition-colors">
+        </div>
+        <div>
+          <label class="text-xs font-mono text-slate block mb-1.5">CONDITION / GRADE *</label>
+          <input required id="fieldCondition" name="condition" type="text" placeholder="e.g. Grade A"
+            class="w-full bg-white border border-black/10 rounded-lg px-4 py-3 text-sm outline-none focus:border-signal/50 transition-colors">
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-3 gap-4">
+        <div>
+          <label class="text-xs font-mono text-slate block mb-1.5">BATTERY HEALTH % *</label>
+          <input required id="fieldBattery" name="battery" type="number" min="0" max="100" placeholder="e.g. 91"
+            class="w-full bg-white border border-black/10 rounded-lg px-4 py-3 text-sm outline-none focus:border-signal/50 transition-colors">
+        </div>
+        <div>
+          <label class="text-xs font-mono text-slate block mb-1.5">PRICE (₹) *</label>
+          <input required id="fieldPrice" name="price" type="number" min="0" step="1" placeholder="e.g. 58999"
+            class="w-full bg-white border border-black/10 rounded-lg px-4 py-3 text-sm outline-none focus:border-signal/50 transition-colors">
+        </div>
+        <div>
+          <label class="text-xs font-mono text-slate block mb-1.5">STATUS *</label>
+          <select required id="fieldStatus" name="status" class="w-full bg-white border border-black/10 rounded-lg px-4 py-3 text-sm outline-none focus:border-signal/50 transition-colors">
+            <option value="available">Available</option>
+            <option value="reserved">Reserved</option>
+            <option value="sold">Sold</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <label class="text-xs font-mono text-slate block mb-1.5">NOTES (OPTIONAL)</label>
+        <textarea id="fieldNotes" name="notes" rows="2" placeholder="Internal notes — not shown publicly unless you add it to the site"
+          class="w-full bg-white border border-black/10 rounded-lg px-4 py-3 text-sm outline-none focus:border-signal/50 transition-colors resize-none"></textarea>
+      </div>
+
+      <div>
+        <label class="text-xs font-mono text-slate block mb-1.5">PHOTOS</label>
+
+        <!-- existing photo thumbnails (edit mode) -->
+        <div id="existingPhotosGrid" class="grid grid-cols-4 sm:grid-cols-6 gap-2 mb-3"></div>
+
+        <div id="dropZone" class="border-2 border-dashed border-black/15 rounded-xl p-6 text-center cursor-pointer transition-colors hover:border-signal/40">
+          <i class="fa-solid fa-cloud-arrow-up text-2xl text-slate/40 mb-2"></i>
+          <p class="text-sm text-slate">Drag photos here or <span class="text-signalDark font-semibold">browse files</span></p>
+          <p class="text-xs text-slate/60 mt-1 font-mono">JPG, PNG, WEBP, GIF — up to 8MB each, 10 photos max</p>
+          <input id="fieldPhotos" name="photos" type="file" accept="image/jpeg,image/png,image/webp,image/gif" multiple class="hidden">
+        </div>
+
+        <!-- preview of newly-selected photos before upload -->
+        <div id="newPhotosGrid" class="grid grid-cols-4 sm:grid-cols-6 gap-2 mt-3"></div>
+      </div>
+
+      <p id="formError" class="hidden text-rose text-sm font-mono"></p>
+
+      <div class="flex items-center gap-3 pt-2">
+        <button type="submit" id="saveBtn" class="bg-signal hover:bg-signalDark text-ink font-semibold text-sm px-6 py-3 rounded-lg transition-colors flex items-center gap-2">
+          <i class="fa-solid fa-floppy-disk"></i> <span id="saveBtnText">Save Device</span>
+        </button>
+        <button type="button" id="cancelBtn" class="text-slate hover:text-ink font-semibold text-sm px-4 py-3 transition-colors">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ============ DELETE CONFIRM MODAL ============ -->
+<div id="deleteModalOverlay" class="hidden fixed inset-0 modal-overlay z-50 flex items-center justify-center p-4">
+  <div class="bg-paper rounded-2xl max-w-sm w-full p-6">
+    <h3 class="font-display font-bold text-lg text-ink mb-2">Delete this device?</h3>
+    <p class="text-sm text-slate mb-6">This permanently removes the listing and its photos. This can't be undone.</p>
+    <div class="flex items-center gap-3">
+      <button id="confirmDeleteBtn" class="bg-rose hover:bg-rose/90 text-white font-semibold text-sm px-5 py-2.5 rounded-lg transition-colors">Delete</button>
+      <button id="cancelDeleteBtn" class="text-slate hover:text-ink font-semibold text-sm px-4 py-2.5 transition-colors">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="fixed bottom-5 right-5 bg-ink text-paper px-5 py-3 rounded-lg shadow-xl font-mono text-sm opacity-0 pointer-events-none transition-opacity z-50"></div>
+
+<script src="dashboard.js"></script>
+</body>
+</html>

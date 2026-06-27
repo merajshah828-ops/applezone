@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Login — Apple Zone</title>
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink: '#11151C', inkSoft: '#1B2128', paper: '#F7F5F1', paperDim: '#EFEBE3',
+          signal: '#2BB673', signalDark: '#1F8F5A', amber: '#E8A33D', rose: '#D8604A', slate: '#5B6472',
+        },
+        fontFamily: {
+          display: ['"Space Grotesk"', 'sans-serif'],
+          body: ['Inter', 'sans-serif'],
+          mono: ['"JetBrains Mono"', 'monospace'],
+        },
+      }
+    }
+  }
+</script>
+<style>
+  body { font-family: 'Inter', sans-serif; }
+  .font-display { font-family: 'Space Grotesk', sans-serif; }
+  .font-mono { font-family: 'JetBrains Mono', monospace; }
+  a:focus-visible, button:focus-visible, input:focus-visible {
+    outline: 2px solid #2BB673; outline-offset: 2px; border-radius: 2px;
+  }
+</style>
+</head>
+<body class="bg-ink text-paper antialiased min-h-screen flex items-center justify-center px-5">
+
+<div class="w-full max-w-sm">
+  <div class="flex items-center gap-2.5 justify-center mb-8">
+    <span class="w-9 h-9 rounded-lg bg-signal/15 border border-signal/30 flex items-center justify-center font-mono text-signal font-bold text-sm">AZ</span>
+    <span class="font-display font-semibold text-lg text-paper tracking-tight">Apple Zone Admin</span>
+  </div>
+
+  <div class="bg-inkSoft border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+    <div class="flex items-center justify-between px-5 py-3.5 border-b border-white/10 bg-black/20">
+      <span class="font-mono text-xs text-paper/50 tracking-widest">ADMIN_ACCESS.LOG</span>
+      <span class="flex gap-1.5">
+        <span class="w-2.5 h-2.5 rounded-full bg-rose/70"></span>
+        <span class="w-2.5 h-2.5 rounded-full bg-amber/70"></span>
+        <span class="w-2.5 h-2.5 rounded-full bg-signal/70"></span>
+      </span>
+    </div>
+
+    <form id="loginForm" class="p-6 space-y-4">
+      <div>
+        <label class="text-xs font-mono text-paper/50 block mb-1.5">USERNAME</label>
+        <input required name="username" type="text" autocomplete="username" placeholder="admin username"
+          class="w-full bg-black/20 border border-white/10 rounded-lg px-4 py-3 text-sm outline-none focus:border-signal/50 transition-colors">
+      </div>
+      <div>
+        <label class="text-xs font-mono text-paper/50 block mb-1.5">PASSWORD</label>
+        <input required name="password" type="password" autocomplete="current-password" placeholder="••••••••"
+          class="w-full bg-black/20 border border-white/10 rounded-lg px-4 py-3 text-sm outline-none focus:border-signal/50 transition-colors">
+      </div>
+
+      <p id="errorMsg" class="hidden text-rose text-sm font-mono"></p>
+
+      <button id="submitBtn" type="submit" class="w-full bg-signal hover:bg-signalDark text-ink font-semibold text-sm px-5 py-3 rounded-lg transition-colors flex items-center justify-center gap-2">
+        <i class="fa-solid fa-lock"></i> <span id="submitText">Log In</span>
+      </button>
+    </form>
+  </div>
+
+  <p class="text-center text-paper/30 text-xs font-mono mt-6">Authorized personnel only.</p>
+</div>
+
+<script>
+const form = document.getElementById('loginForm');
+const errorMsg = document.getElementById('errorMsg');
+const submitBtn = document.getElementById('submitBtn');
+const submitText = document.getElementById('submitText');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  errorMsg.classList.add('hidden');
+  submitBtn.disabled = true;
+  submitText.textContent = 'Logging in...';
+
+  const formData = new FormData(form);
+  try {
+    const res = await fetch('/api/admin/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: formData.get('username'),
+        password: formData.get('password'),
+      }),
+    });
+    const data = await res.json();
+    if (res.ok && data.success) {
+      window.location.href = '/admin/dashboard.html';
+    } else {
+      errorMsg.textContent = data.error || 'Login failed.';
+      errorMsg.classList.remove('hidden');
+    }
+  } catch (err) {
+    errorMsg.textContent = 'Network error — could not reach the server.';
+    errorMsg.classList.remove('hidden');
+  } finally {
+    submitBtn.disabled = false;
+    submitText.textContent = 'Log In';
+  }
+});
+</script>
+
+</body>
+</html>
