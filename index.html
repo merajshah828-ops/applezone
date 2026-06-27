@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ===== SEO META ===== -->
+<title>Apple Zone Hyderabad | Buy, Sell & Exchange Pre-Owned iPhones, MacBooks & Apple Watches</title>
+<meta name="description" content="Apple Zone, Kukatpally, Hyderabad — buy, sell & exchange verified pre-owned iPhones, MacBooks, Apple Watches & AirPods. IMEI verified, battery health checked, professionally graded. Visit our store or chat on WhatsApp.">
+<meta name="keywords" content="pre-owned iPhone Hyderabad, second hand MacBook Kukatpally, sell old iPhone, Apple Watch resale, IMEI check, battery health check, Apple Zone Hyderabad">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://applezone.example.com/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Apple Zone Hyderabad | Buy, Sell & Exchange Pre-Owned Apple Devices">
+<meta property="og:description" content="Verified, graded, IMEI-checked pre-owned iPhones, MacBooks, Apple Watches & AirPods in Kukatpally, Hyderabad. Buy, sell or exchange with confidence.">
+<meta property="og:url" content="https://applezone.example.com/">
+<meta property="og:locale" content="en_IN">
+<meta property="og:site_name" content="Apple Zone">
+
+<!-- Local Business Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ElectronicsStore",
+  "name": "Apple Zone",
+  "image": "",
+  "telephone": "+91-77807-08876",
+  "email": "applezone.kphb@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "15-21-16/9, Block 16 LIG Flats, Shop No. 1, 1st Floor, Kukatpally Housing Board Colony, 3rd Phase",
+    "addressLocality": "Hyderabad",
+    "addressRegion": "Telangana",
+    "postalCode": "500072",
+    "addressCountry": "IN"
+  },
+  "priceRange": "₹₹"
+}
+</script>
+
+<!-- Favicon -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%2311151C'/%3E%3Ctext x='50' y='66' font-size='52' text-anchor='middle' fill='%232BB673' font-family='monospace'%3EZ%3C/text%3E%3C/svg%3E">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink: '#11151C',
+          inkSoft: '#1B2128',
+          paper: '#F7F5F1',
+          paperDim: '#EFEBE3',
+          signal: '#2BB673',
+          signalDark: '#1F8F5A',
+          amber: '#E8A33D',
+          rose: '#D8604A',
+          slate: '#5B6472',
+        },
+        fontFamily: {
+          display: ['"Space Grotesk"', 'sans-serif'],
+          body: ['Inter', 'sans-serif'],
+          mono: ['"JetBrains Mono"', 'monospace'],
+        },
+      }
+    }
+  }
+</script>
+
+<style>
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { font-family: 'Inter', sans-serif; background-color: #F7F5F1; overflow-x: hidden; }
+  .font-display { font-family: 'Space Grotesk', sans-serif; }
+  .font-mono { font-family: 'JetBrains Mono', monospace; }
+  img, video, canvas, svg { max-width: 100%; }
+
+  h1, h2, h3, p, a, button, input, select, textarea, span {
+    overflow-wrap: anywhere;
+  }
+
+  #home h1 { font-size: clamp(2.4rem, 7vw, 3.4rem); }
+  section[id]:not(#home) { scroll-margin-top: 4rem; }
+  [id] { scroll-margin-top: 5rem; }
+
+  /* Reduced motion respect */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+  }
+
+  /* Visible keyboard focus */
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: 2px solid #2BB673;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* Scan-line ticker for the diagnostic readout */
+  @keyframes scanline {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(2000%); }
+  }
+  .scanline { animation: scanline 4s linear infinite; }
+
+  /* Status pulse for "available" dot */
+  @keyframes pulseDot {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(43,182,115,0.55); }
+    70% { box-shadow: 0 0 0 6px rgba(43,182,115,0); }
+  }
+  .pulse-dot { animation: pulseDot 2s infinite; }
+
+  /* Card lift */
+  .lift { transition: transform .25s ease, box-shadow .25s ease; }
+  .lift:hover { transform: translateY(-4px); box-shadow: 0 12px 30px -10px rgba(17,21,28,0.25); }
+
+  /* Reveal on scroll */
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  /* Marquee for testimonials (pause on hover) */
+  .ticker-track { animation: ticker 28s linear infinite; }
+  .ticker-track:hover { animation-play-state: paused; }
+  @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+  /* Hide scrollbar for filter chips on mobile */
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* Custom range slider */
+  input[type="range"] { -webkit-appearance: none; height: 4px; background: #DCD7CC; border-radius: 4px; }
+  input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%; background: #11151C; border: 3px solid #2BB673; cursor: pointer; }
+  input[type="range"]::-moz-range-thumb { width: 18px; height: 18px; border-radius: 50%; background: #11151C; border: 3px solid #2BB673; cursor: pointer; }
+
+  /* Category filter chips */
+  .chip { background: #F7F5F1; border-color: rgba(17,21,28,0.08); color: #5B6472; }
+  .chip:hover { border-color: rgba(43,182,115,0.4); color: #11151C; }
+  .chip.active-chip { background: #11151C; border-color: #11151C; color: #F7F5F1; }
+
+  /* Sell For Cash: photo drop zone drag feedback */
+  #sellPhotoDropZone.drag-over { border-color: #2BB673; background: rgba(43,182,115,0.06); }
+
+  @media (max-width: 640px) {
+    section[id]:not(#home) { padding-top: 4rem; padding-bottom: 4rem; }
+    #home > .relative.max-w-7xl { padding-top: 3rem; padding-bottom: 3.5rem; gap: 2rem; }
+    #home h1 { font-size: clamp(2.05rem, 10vw, 2.85rem); line-height: 1.06; }
+    #home h1 br { display: none; }
+    #home p.text-lg { font-size: 1rem; line-height: 1.7; }
+    #home .mt-8 { display: grid; grid-template-columns: 1fr; gap: .75rem; }
+    #home .mt-8 a { justify-content: center; width: 100%; padding: .875rem 1rem; font-size: .95rem; }
+    #home .mt-10 { flex-direction: column; align-items: flex-start; gap: .75rem; font-size: .78rem; }
+    #home .p-6 { padding: 1rem; }
+    h2.font-display { font-size: clamp(1.75rem, 8vw, 2.15rem); line-height: 1.14; }
+    .rounded-2xl { border-radius: .9rem; }
+    #contact .grid, #devices .grid { min-width: 0; }
+    input, select, textarea, button { font-size: 16px; }
+  }
+
+  @media (max-width: 380px) {
+    nav { padding-left: 1rem !important; padding-right: 1rem !important; }
+    #home > .relative.max-w-7xl, .max-w-7xl { padding-left: 1rem; padding-right: 1rem; }
+    #home h1 { font-size: clamp(1.9rem, 10vw, 2.35rem); }
+    .font-mono.text-xs { font-size: .68rem; }
+  }
+</style>
+</head>
+
+<body class="bg-paper text-ink font-body antialiased">
+
+<!-- ============ NAVBAR ============ -->
+<header id="navbar" class="fixed top-0 inset-x-0 z-50 transition-all duration-300 bg-ink/95 backdrop-blur-sm border-b border-white/5">
+  <nav class="max-w-7xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
+    <a href="#home" class="flex items-center gap-2.5 group">
+      <span class="w-10 h-10 rounded-xl bg-signal/15 border border-signal/30 flex items-center justify-center shadow-sm group-hover:bg-signal/25 transition-colors group-hover:scale-105 transition-transform font-mono text-signal font-bold text-sm" aria-label="Apple Zone logo">
+        AZ
+      </span>
+      <span class="font-display font-semibold text-lg text-paper tracking-tight">Apple Zone</span>
+    </a>
+
+    <div class="hidden lg:flex items-center gap-8 font-medium text-sm text-paper/80">
+      <a href="about.html" class="hover:text-signal transition-colors">About</a>
+      <a href="#devices" class="hover:text-signal transition-colors">Devices</a>
+      <a href="#sell-for-cash" class="hover:text-signal transition-colors">Sell For Cash</a>
+      <a href="#services" class="hover:text-signal transition-colors">Services</a>
+      <a href="#why" class="hover:text-signal transition-colors">Why Us</a>
+      <a href="#reviews" class="hover:text-signal transition-colors">Reviews</a>
+      <a href="#contact" class="hover:text-signal transition-colors">Contact</a>
+    </div>
+
+    <div class="hidden lg:flex items-center gap-3">
+      <a href="tel:+917780708876" class="font-mono text-xs text-paper/70 hover:text-signal transition-colors flex items-center gap-1.5">
+        <i class="fa-solid fa-phone text-signal"></i> +91 77807 08876
+      </a>
+      <a href="#contact" class="bg-signal hover:bg-signalDark text-ink font-semibold text-sm px-5 py-2.5 rounded-lg transition-colors">Sell Your Device</a>
+    </div>
+
+    <button id="menuBtn" aria-label="Open menu" aria-expanded="false" class="lg:hidden w-10 h-10 flex items-center justify-center text-paper">
+      <i class="fa-solid fa-bars text-xl"></i>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobileMenu" class="lg:hidden hidden border-t border-white/10 bg-ink px-5 py-4 space-y-3">
+    <a href="about.html" class="block text-paper/85 font-medium py-1.5">About</a>
+    <a href="#devices" class="block text-paper/85 font-medium py-1.5">Devices</a>
+    <a href="#sell-for-cash" class="block text-paper/85 font-medium py-1.5">Sell For Cash</a>
+    <a href="#services" class="block text-paper/85 font-medium py-1.5">Services</a>
+    <a href="#why" class="block text-paper/85 font-medium py-1.5">Why Us</a>
+    <a href="#reviews" class="block text-paper/85 font-medium py-1.5">Reviews</a>
+    <a href="#contact" class="block text-paper/85 font-medium py-1.5">Contact</a>
+    <a href="#contact" class="block text-center bg-signal text-ink font-semibold py-2.5 rounded-lg mt-2">Sell Your Device</a>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section id="home" class="relative bg-ink text-paper overflow-hidden pt-16">
+  <!-- ambient grid -->
+  <div class="absolute inset-0 opacity-[0.07]" style="background-image:linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px);background-size:42px 42px;"></div>
+  <div class="absolute -top-32 -right-32 w-96 h-96 bg-signal/10 rounded-full blur-3xl"></div>
+
+  <div class="relative max-w-7xl mx-auto px-5 sm:px-8 py-16 lg:py-24 grid lg:grid-cols-2 gap-12 items-center">
+
+    <!-- Left: copy -->
+    <div>
+      <div class="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full pl-2 pr-4 py-1.5 mb-6">
+        <span class="relative flex h-2 w-2">
+          <span class="absolute inline-flex h-full w-full rounded-full bg-signal pulse-dot"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-signal"></span>
+        </span>
+        <span class="text-xs font-mono text-paper/70">Kukatpally, Hyderabad — Open Today</span>
+      </div>
+
+      <h1 class="font-display font-bold text-4xl sm:text-5xl lg:text-[3.4rem] leading-[1.08] tracking-tight">
+        Every device,<br>
+        <span class="text-signal">verified before</span><br>
+        it reaches you.
+      </h1>
+
+      <p class="mt-6 text-paper/70 text-lg leading-relaxed max-w-md">
+        Apple Zone is Hyderabad's pre-owned device marketplace where every iPhone, MacBook, Apple Watch and AirPods is IMEI-checked, battery-tested and professionally graded — before it's listed.
+      </p>
+
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="#devices" class="bg-signal hover:bg-signalDark text-ink font-semibold px-6 py-3.5 rounded-lg transition-colors flex items-center gap-2">
+          <i class="fa-solid fa-mobile-screen-button"></i> Buy Devices
+        </a>
+        <a href="#sell" class="bg-white/10 hover:bg-white/15 border border-white/15 text-paper font-semibold px-6 py-3.5 rounded-lg transition-colors flex items-center gap-2">
+          <i class="fa-solid fa-indian-rupee-sign"></i> Sell Your Device
+        </a>
+        <a href="#exchange" class="bg-white/10 hover:bg-white/15 border border-white/15 text-paper font-semibold px-6 py-3.5 rounded-lg transition-colors flex items-center gap-2">
+          <i class="fa-solid fa-arrows-rotate"></i> Exchange
+        </a>
+        <a href="#contact" class="text-paper/80 hover:text-signal font-semibold px-3 py-3.5 transition-colors flex items-center gap-2">
+          Contact Us <i class="fa-solid fa-arrow-right text-sm"></i>
+        </a>
+      </div>
+
+      <div class="mt-10 flex items-center gap-6 text-paper/60 text-sm font-mono">
+        <span class="flex items-center gap-1.5"><i class="fa-solid fa-shield-check text-signal"></i> IMEI Verified</span>
+        <span class="flex items-center gap-1.5"><i class="fa-solid fa-battery-three-quarters text-signal"></i> Battery Checked</span>
+        <span class="flex items-center gap-1.5"><i class="fa-solid fa-magnifying-glass text-signal"></i> Professionally Graded</span>
+      </div>
+    </div>
+
+    <!-- Right: diagnostic readout card (signature element) -->
+    <div class="relative">
+      <div class="relative bg-inkSoft border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+        <!-- scanline -->
+        <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-signal/60 to-transparent scanline"></div>
+
+        <div class="flex items-center justify-between px-5 py-3.5 border-b border-white/10 bg-black/20">
+          <span class="font-mono text-xs text-paper/50 tracking-widest">DEVICE_GRADING_REPORT.LOG</span>
+          <span class="flex gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-rose/70"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-amber/70"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-signal/70"></span>
+          </span>
+        </div>
+
+        <div class="p-6 space-y-5">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="font-display font-semibold text-lg">iPhone 14 Pro</p>
+              <p class="font-mono text-xs text-paper/50">128GB · Deep Purple</p>
+            </div>
+            <span class="bg-signal/15 text-signal border border-signal/30 text-xs font-mono px-3 py-1 rounded-full">GRADE A</span>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3 font-mono text-xs">
+            <div class="bg-black/20 rounded-lg p-3">
+              <p class="text-paper/40 mb-1">IMEI STATUS</p>
+              <p class="text-signal flex items-center gap-1.5"><i class="fa-solid fa-circle-check"></i> CLEAN</p>
+            </div>
+            <div class="bg-black/20 rounded-lg p-3">
+              <p class="text-paper/40 mb-1">BATTERY HEALTH</p>
+              <p class="text-paper flex items-center gap-1.5"><i class="fa-solid fa-bolt text-amber"></i> 91%</p>
+            </div>
+            <div class="bg-black/20 rounded-lg p-3">
+              <p class="text-paper/40 mb-1">PARTS CHECK</p>
+              <p class="text-signal flex items-center gap-1.5"><i class="fa-solid fa-circle-check"></i> GENUINE</p>
+            </div>
+            <div class="bg-black/20 rounded-lg p-3">
+              <p class="text-paper/40 mb-1">STOLEN CHECK</p>
+              <p class="text-signal flex items-center gap-1.5"><i class="fa-solid fa-circle-check"></i> CLEAR</p>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between pt-2 border-t border-white/10">
+            <p class="font-mono text-paper/40 text-xs">VERIFIED PRICE</p>
+            <p class="font-display font-bold text-2xl text-paper">₹58,999</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="absolute -bottom-5 -left-5 bg-paper text-ink rounded-xl shadow-xl px-4 py-3 hidden sm:flex items-center gap-3 border border-black/5">
+        <i class="fa-solid fa-shield-halved text-signal text-xl"></i>
+        <div>
+          <p class="font-display font-semibold text-sm leading-tight">7-Point Inspection</p>
+          <p class="font-mono text-[11px] text-slate">on every listed device</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about" class="bg-paper py-20 lg:py-28">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 grid lg:grid-cols-2 gap-14 items-start">
+
+    <div>
+      <p class="font-mono text-xs text-signalDark tracking-widest uppercase mb-3">// About Apple Zone</p>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl text-ink leading-tight">
+        We treat verification as<br>the product, not the paperwork.
+      </h2>
+      <p class="mt-5 text-slate leading-relaxed">
+        Apple Zone is Kukatpally's pre-owned device marketplace and service center, built around one idea: buying a used device shouldn't feel like a gamble. Every iPhone, Android phone, MacBook, Apple Watch and pair of AirPods that comes through our store passes a full diagnostic before it's ever listed for sale.
+      </p>
+      <p class="mt-4 text-slate leading-relaxed">
+        Our mission is simple — fair prices for sellers, verified condition for buyers, and honest service for everyone who walks in. No inflated grading, no hidden faults, no guesswork.
+      </p>
+
+      <div class="mt-8 grid grid-cols-3 gap-4">
+        <div class="border-l-2 border-signal pl-4">
+          <p class="font-display font-bold text-2xl text-ink">7-Point</p>
+          <p class="text-xs text-slate font-mono mt-1">Inspection</p>
+        </div>
+        <div class="border-l-2 border-signal pl-4">
+          <p class="font-display font-bold text-2xl text-ink">100%</p>
+          <p class="text-xs text-slate font-mono mt-1">IMEI Checked</p>
+        </div>
+        <div class="border-l-2 border-signal pl-4">
+          <p class="font-display font-bold text-2xl text-ink">5</p>
+          <p class="text-xs text-slate font-mono mt-1">Device Categories</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="space-y-4">
+      <div class="bg-white border border-black/5 rounded-xl p-5 flex gap-4 lift">
+        <div class="w-11 h-11 rounded-lg bg-signal/10 text-signal flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-handshake text-lg"></i></div>
+        <div>
+          <p class="font-display font-semibold text-ink">Customer Commitment</p>
+          <p class="text-sm text-slate mt-1 leading-relaxed">Transparent grading, fair valuations, and no pressure to buy or sell on the spot.</p>
+        </div>
+      </div>
+      <div class="bg-white border border-black/5 rounded-xl p-5 flex gap-4 lift">
+        <div class="w-11 h-11 rounded-lg bg-signal/10 text-signal flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-magnifying-glass-chart text-lg"></i></div>
+        <div>
+          <p class="font-display font-semibold text-ink">Why Customers Trust Us</p>
+          <p class="text-sm text-slate mt-1 leading-relaxed">Every device is checked for IMEI status, theft records, genuine parts, and battery health before listing.</p>
+        </div>
+      </div>
+      <div class="bg-white border border-black/5 rounded-xl p-5 flex gap-4 lift">
+        <div class="w-11 h-11 rounded-lg bg-signal/10 text-signal flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-lock text-lg"></i></div>
+        <div>
+          <p class="font-display font-semibold text-ink">Data Privacy First</p>
+          <p class="text-sm text-slate mt-1 leading-relaxed">Secure data wipe and backup on every trade-in, handled in-store under your supervision.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ FEATURED DEVICES ============ -->
+<section id="devices" class="bg-paperDim py-20 lg:py-28 border-t border-black/5">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+
+    <div class="flex flex-wrap items-end justify-between gap-4 mb-10">
+      <div>
+        <p class="font-mono text-xs text-signalDark tracking-widest uppercase mb-3">// Inventory</p>
+        <h2 class="font-display font-bold text-3xl sm:text-4xl text-ink">Featured Devices</h2>
+      </div>
+      <p class="text-slate text-sm max-w-xs">Updated daily. Tap any listing to inquire instantly on WhatsApp.</p>
+    </div>
+
+    <!-- Search & Filter -->
+    <div class="bg-white border border-black/5 rounded-2xl p-4 sm:p-5 mb-10 shadow-sm">
+      <div class="grid sm:grid-cols-[1.4fr_1fr] gap-3">
+        <div class="relative">
+          <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate/50 text-sm"></i>
+          <input id="searchInput" type="text" placeholder="Search by model — e.g. iPhone 13, MacBook Air..."
+            class="w-full pl-11 pr-4 py-3 rounded-lg bg-paperDim border border-black/5 text-sm focus:bg-white transition-colors outline-none">
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <select id="typeFilter" class="px-4 py-3 rounded-lg bg-paperDim border border-black/5 text-sm outline-none">
+            <option value="all">All Types</option>
+            <option value="iphone">iPhones</option>
+            <option value="android">Android Phones</option>
+            <option value="macbook">MacBooks</option>
+            <option value="watch">Apple Watches</option>
+            <option value="airpods">AirPods</option>
+          </select>
+          <select id="statusFilter" class="px-4 py-3 rounded-lg bg-paperDim border border-black/5 text-sm outline-none">
+            <option value="all">Any Status</option>
+            <option value="available">Available</option>
+            <option value="reserved">Reserved</option>
+            <option value="sold">Sold</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="mt-4 flex flex-col sm:flex-row sm:items-center gap-3">
+        <label class="text-xs font-mono text-slate whitespace-nowrap">PRICE ≤ <span id="priceLabel" class="text-ink font-semibold">₹1,50,000</span></label>
+        <input id="priceRange" type="range" min="3000" max="150000" step="1000" value="150000" class="w-full">
+      </div>
+
+      <!-- category chips -->
+      <div class="flex gap-2 mt-4 overflow-x-auto no-scrollbar pb-1" id="chipRow">
+        <button data-cat="all" class="chip active-chip font-mono text-xs px-4 py-2 rounded-full border whitespace-nowrap transition-colors">All</button>
+        <button data-cat="iphone" class="chip font-mono text-xs px-4 py-2 rounded-full border whitespace-nowrap transition-colors">iPhones</button>
+        <button data-cat="android" class="chip font-mono text-xs px-4 py-2 rounded-full border whitespace-nowrap transition-colors">Android</button>
+        <button data-cat="macbook" class="chip font-mono text-xs px-4 py-2 rounded-full border whitespace-nowrap transition-colors">MacBooks</button>
+        <button data-cat="watch" class="chip font-mono text-xs px-4 py-2 rounded-full border whitespace-nowrap transition-colors">Apple Watch</button>
+        <button data-cat="airpods" class="chip font-mono text-xs px-4 py-2 rounded-full border whitespace-nowrap transition-colors">AirPods</button>
+      </div>
+    </div>
+
+    <!-- Device Grid -->
+    <div id="deviceGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+    <p id="noResults" class="hidden text-center text-slate py-16 font-mono text-sm">No devices match your filters — try widening your search.</p>
+
+  </div>
+</section>
+
+<!-- ============ SELL FOR CASH ============ -->
+<section id="sell-for-cash" class="bg-paper py-20 lg:py-28 border-t border-black/5">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+
+    <div class="mb-10">
+      <p class="font-mono text-xs text-signalDark tracking-widest uppercase mb-3">// Trade-In</p>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl text-ink">Sell For Cash</h2>
+      <p class="text-slate mt-3 max-w-xl">Pick what you're selling, then your brand, then tell us the details — we'll quote you instantly on WhatsApp. Fair price, same-day cash.</p>
+    </div>
+
+    <!-- Step 1: device category -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-12" id="sellCategoryGrid">
+      <button data-category="Phone" class="sell-cat-btn group bg-white border border-black/5 rounded-2xl p-4 sm:p-5 text-center lift">
+        <div class="w-14 h-14 sm:w-16 sm:h-16 mx-auto rounded-xl bg-paperDim flex items-center justify-center mb-3 group-hover:bg-signal/10 transition-colors">
+          <i class="fa-solid fa-mobile-screen-button text-2xl text-ink group-hover:text-signalDark transition-colors"></i>
+        </div>
+        <p class="font-display font-semibold text-sm text-ink">Sell Phone</p>
+      </button>
+
+      <button data-category="Laptop" class="sell-cat-btn group bg-white border border-black/5 rounded-2xl p-4 sm:p-5 text-center lift">
+        <div class="w-14 h-14 sm:w-16 sm:h-16 mx-auto rounded-xl bg-paperDim flex items-center justify-center mb-3 group-hover:bg-signal/10 transition-colors">
+          <i class="fa-solid fa-laptop text-2xl text-ink group-hover:text-signalDark transition-colors"></i>
+        </div>
+        <p class="font-display font-semibold text-sm text-ink">Sell Laptop</p>
+      </button>
+
+      <button data-category="Tablet" class="sell-cat-btn group bg-white border border-black/5 rounded-2xl p-4 sm:p-5 text-center lift">
+        <div class="w-14 h-14 sm:w-16 sm:h-16 mx-auto rounded-xl bg-paperDim flex items-center justify-center mb-3 group-hover:bg-signal/10 transition-colors">
+          <i class="fa-solid fa-tablet-screen-button text-2xl text-ink group-hover:text-signalDark transition-colors"></i>
+        </div>
+        <p class="font-display font-semibold text-sm text-ink">Sell Tablet</p>
+      </button>
+
+      <button data-category="Smartwatch" class="sell-cat-btn group bg-white border border-black/5 rounded-2xl p-4 sm:p-5 text-center lift">
+        <div class="w-14 h-14 sm:w-16 sm:h-16 mx-auto rounded-xl bg-paperDim flex items-center justify-center mb-3 group-hover:bg-signal/10 transition-colors">
+          <i class="fa-solid fa-clock text-2xl text-ink group-hover:text-signalDark transition-colors"></i>
+        </div>
+        <p class="font-display font-semibold text-sm text-ink">Sell Smartwatch</p>
+      </button>
+
+      <button id="sellMoreBtn" data-category="Other Device" class="sell-cat-btn group bg-white border border-black/5 rounded-2xl p-4 sm:p-5 text-center lift">
+        <div class="w-14 h-14 sm:w-16 sm:h-16 mx-auto rounded-xl bg-paperDim flex items-center justify-center mb-3 group-hover:bg-signal/10 transition-colors">
+          <i class="fa-solid fa-ellipsis text-2xl text-ink group-hover:text-signalDark transition-colors"></i>
+        </div>
+        <p class="font-display font-semibold text-sm text-ink">Sell More</p>
+      </button>
+    </div>
+
+    <!-- Step 2: brand picker (revealed after a category is chosen) -->
+    <div id="sellBrandPanel" class="hidden">
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <p class="font-mono text-xs text-slate">STEP 2 OF 3</p>
+          <h3 class="font-display font-bold text-xl text-ink mt-1">Which brand is your <span id="sellBrandCategoryLabel" class="text-signalDark">device</span>?</h3>
+        </div>
+        <button id="sellBrandBackBtn" type="button" class="font-mono text-xs text-slate hover:text-ink transition-colors flex items-center gap-1.5">
+          <i class="fa-solid fa-arrow-left"></i> Back
+        </button>
+      </div>
+
+      <div class="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-3" id="sellBrandGrid">
+        <!-- populated by JS, per-category brand list -->
+      </div>
+    </div>
+
+    <!-- Step 3: device details form (revealed after a brand is chosen) -->
+    <div id="sellDetailsPanel" class="hidden">
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <p class="font-mono text-xs text-slate">STEP 3 OF 3</p>
+          <h3 class="font-display font-bold text-xl text-ink mt-1">Tell us about your <span id="sellDetailsBrandLabel" class="text-signalDark">device</span></h3>
+        </div>
+        <button id="sellDetailsBackBtn" type="button" class="font-mono text-xs text-slate hover:text-ink transition-colors flex items-center gap-1.5">
+          <i class="fa-solid fa-arrow-left"></i> Back
+        </button>
+      </div>
+
+      <form id="sellDetailsForm" class="bg-white border border-black/5 rounded-2xl p-5 sm:p-6 max-w-2xl">
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label class="text-xs font-mono text-slate block mb-1.5">MODEL *</label>
+            <input required id="sellModel" type="text" placeholder="e.g. iPhone 13, 128GB" class="w-full rounded-lg border border-black/10 bg-paperDim px-4 py-3 text-sm outline-none focus:border-signal/50 transition-colors">
+          </div>
+          <div>
+            <label class="text-xs font-mono text-slate block mb-1.5">STORAGE / CAPACITY</label>
+            <input id="sellStorage" type="text" placeholder="e.g. 128GB" class="w-full rounded-lg border border-black/10 bg-paperDim px-4 py-3 text-sm outline-none focus:border-signal/50 transition-colors">
+          </div>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-4 mt-4">
+          <div>
+            <label class="text-xs font-mono text-slate block mb-1.5">CONDITION *</label>
+            <select required id="sellCondition" class="w-full rounded-lg border border-black/10 bg-paperDim px-4 py-3 text-sm outline-none focus:border-signal/50 transition-colors">
+              <option value="">Select condition</option>
+              <option value="Like New">Like New — barely used, no visible wear</option>
+              <option value="Good">Good — light wear, fully functional</option>
+              <option value="Fair">Fair — visible wear and tear, works fine</option>
+              <option value="Poor / Not Working">Poor / Not Working — damaged or faulty</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-xs font-mono text-slate block mb-1.5">YOUR EXPECTED PRICE (₹)</label>
+            <input id="sellExpectedPrice" type="number" min="0" placeholder="e.g. 25000" class="w-full rounded-lg border border-black/10 bg-paperDim px-4 py-3 text-sm outline-none focus:border-signal/50 transition-colors">
+          </div>
+        </div>
+        <div class="mt-4">
+          <label class="text-xs font-mono text-slate block mb-1.5">ANYTHING ELSE WE SHOULD KNOW?</label>
+          <textarea id="sellNotes" rows="3" placeholder="Box & accessories, warranty status, any damage, etc. (optional)" class="w-full rounded-lg border border-black/10 bg-paperDim px-4 py-3 text-sm outline-none focus:border-signal/50 transition-colors resize-none"></textarea>
+        </div>
+
+        <div class="mt-4">
+          <label class="text-xs font-mono text-slate block mb-1.5">PHOTOS OF YOUR DEVICE (OPTIONAL, BUT HELPS US QUOTE FASTER)</label>
+          <div id="sellPhotoDropZone" class="border-2 border-dashed border-black/15 rounded-xl p-5 text-center cursor-pointer transition-colors hover:border-signal/40">
+            <i class="fa-solid fa-camera text-xl text-slate/40 mb-2"></i>
+            <p class="text-sm text-slate">Drag photos here or <span class="text-signalDark font-semibold">browse files</span></p>
+            <p class="text-xs text-slate/60 mt-1 font-mono">Up to 5 photos — front, back, screen, any damage</p>
+            <input id="sellPhotoInput" type="file" accept="image/jpeg,image/png,image/webp,image/gif" multiple class="hidden">
+          </div>
+          <div id="sellPhotoPreviewGrid" class="grid grid-cols-4 sm:grid-cols-5 gap-2 mt-3"></div>
+          <p class="text-xs text-slate/60 mt-1.5 font-mono">Note: photos are attached for your reference — please also send them directly in the WhatsApp chat once it opens, since WhatsApp links can't carry image files automatically.</p>
+        </div>
+
+        <button type="submit" class="mt-5 w-full sm:w-auto bg-signal hover:bg-signalDark text-ink font-semibold text-sm px-6 py-3 rounded-lg transition-colors flex items-center justify-center gap-2">
+          <i class="fa-brands fa-whatsapp"></i> Get My Quote on WhatsApp
+        </button>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section id="services" class="bg-ink text-paper py-20 lg:py-28">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+
+    <div class="mb-12">
+      <p class="font-mono text-xs text-signal tracking-widest uppercase mb-3">// Diagnostics &amp; Trade</p>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl">Services Offered</h2>
+      <p class="text-paper/60 mt-3 max-w-xl">From buying and selling to full hardware diagnostics — every service runs through the same inspection bench.</p>
+    </div>
+
+    <!-- Buy/Sell/Exchange row -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <a href="#sell-for-cash" id="sell" class="bg-inkSoft border border-white/10 rounded-xl p-5 lift block cursor-pointer">
+        <i class="fa-solid fa-tag text-signal text-xl mb-3"></i>
+        <p class="font-display font-semibold">Sell Your Device</p>
+        <p class="text-sm text-paper/55 mt-1.5">Instant valuation, fair cash offers, same-day payment.</p>
+      </a>
+      <div class="bg-inkSoft border border-white/10 rounded-xl p-5 lift">
+        <i class="fa-solid fa-cart-shopping text-signal text-xl mb-3"></i>
+        <p class="font-display font-semibold">Purchase Pre-Owned</p>
+        <p class="text-sm text-paper/55 mt-1.5">Browse verified, graded devices ready to take home.</p>
+      </div>
+      <div id="exchange" class="bg-inkSoft border border-white/10 rounded-xl p-5 lift">
+        <i class="fa-solid fa-right-left text-signal text-xl mb-3"></i>
+        <p class="font-display font-semibold">Device Exchange</p>
+        <p class="text-sm text-paper/55 mt-1.5">Trade in your old device toward an upgrade, instantly.</p>
+      </div>
+      <div class="bg-inkSoft border border-white/10 rounded-xl p-5 lift">
+        <i class="fa-solid fa-arrow-up-right-dots text-signal text-xl mb-3"></i>
+        <p class="font-display font-semibold">Upgrade Assistance</p>
+        <p class="text-sm text-paper/55 mt-1.5">Guided advice on the best upgrade for your budget.</p>
+      </div>
+    </div>
+
+    <!-- Professional diagnostics grid -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+      <div class="bg-inkSoft border border-white/10 rounded-xl p-6 lift">
+        <div class="w-11 h-11 rounded-lg bg-signal/10 text-signal flex items-center justify-center mb-4"><i class="fa-solid fa-star-half-stroke"></i></div>
+        <p class="font-display font-semibold mb-1.5">Device Grading</p>
+        <p class="text-sm text-paper/55 leading-relaxed">Evaluate a device's condition and market value through professional assessment.</p>
+      </div>
+
+      <div class="bg-inkSoft border border-white/10 rounded-xl p-6 lift">
+        <div class="w-11 h-11 rounded-lg bg-signal/10 text-signal flex items-center justify-center mb-4"><i class="fa-solid fa-stethoscope"></i></div>
+        <p class="font-display font-semibold mb-1.5">Device Health Check</p>
+        <p class="text-sm text-paper/55 leading-relaxed">Comprehensive testing of hardware and software functionality.</p>
+      </div>
+
+      <div class="bg-inkSoft border border-white/10 rounded-xl p-6 lift">
+        <div class="w-11 h-11 rounded-lg bg-signal/10 text-signal flex items-center justify-center mb-4"><i class="fa-solid fa-battery-three-quarters"></i></div>
+        <p class="font-display font-semibold mb-1.5">Battery Health Check</p>
+        <p class="text-sm text-paper/55 leading-relaxed">Detailed battery condition and performance analysis.</p>
+      </div>
+
+      <div class="bg-inkSoft border border-white/10 rounded-xl p-6 lift">
+        <div class="w-11 h-11 rounded-lg bg-signal/10 text-signal flex items-center justify-center mb-4"><i class="fa-solid fa-fingerprint"></i></div>
+        <p class="font-display font-semibold mb-1.5">IMEI Verification</p>
+        <p class="text-sm text-paper/55 leading-relaxed">Verify the authenticity and legitimacy of devices through IMEI validation.</p>
+      </div>
+
+      <div class="bg-inkSoft border border-white/10 rounded-xl p-6 lift">
+        <div class="w-11 h-11 rounded-lg bg-signal/10 text-signal flex items-center justify-center mb-4"><i class="fa-solid fa-shield-halved"></i></div>
+        <p class="font-display font-semibold mb-1.5">Stolen Phone Verification</p>
+        <p class="text-sm text-paper/55 leading-relaxed">Check whether a device has been reported lost, stolen, or blacklisted.</p>
+      </div>
+
+      <div class="bg-inkSoft border border-white/10 rounded-xl p-6 lift">
+        <div class="w-11 h-11 rounded-lg bg-signal/10 text-signal flex items-center justify-center mb-4"><i class="fa-solid fa-magnifying-glass"></i></div>
+        <p class="font-display font-semibold mb-1.5">Fake Part Detection</p>
+        <p class="text-sm text-paper/55 leading-relaxed">Identify non-genuine replacement components and unauthorized repairs.</p>
+      </div>
+
+      <div class="bg-inkSoft border border-white/10 rounded-xl p-6 lift">
+        <div class="w-11 h-11 rounded-lg bg-signal/10 text-signal flex items-center justify-center mb-4"><i class="fa-solid fa-circle-info"></i></div>
+        <p class="font-display font-semibold mb-1.5">Check Device Details</p>
+        <p class="text-sm text-paper/55 leading-relaxed">Display complete hardware, software, and device information.</p>
+      </div>
+
+      <div class="bg-inkSoft border border-white/10 rounded-xl p-6 lift">
+        <div class="w-11 h-11 rounded-lg bg-signal/10 text-signal flex items-center justify-center mb-4"><i class="fa-solid fa-arrow-right-arrow-left"></i></div>
+        <p class="font-display font-semibold mb-1.5">Data Transfer</p>
+        <p class="text-sm text-paper/55 leading-relaxed">Transfer photos, contacts, videos, documents, apps and settings between devices.</p>
+      </div>
+
+      <div class="bg-inkSoft border border-white/10 rounded-xl p-6 lift">
+        <div class="w-11 h-11 rounded-lg bg-signal/10 text-signal flex items-center justify-center mb-4"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+        <p class="font-display font-semibold mb-1.5">Data Backup</p>
+        <p class="text-sm text-paper/55 leading-relaxed">Secure backup solutions for customer data.</p>
+      </div>
+
+      <div class="bg-inkSoft border border-white/10 rounded-xl p-6 lift sm:col-span-2 lg:col-span-1">
+        <div class="w-11 h-11 rounded-lg bg-signal/10 text-signal flex items-center justify-center mb-4"><i class="fa-solid fa-trash-can"></i></div>
+        <p class="font-display font-semibold mb-1.5">Data Wipe</p>
+        <p class="text-sm text-paper/55 leading-relaxed">Safe and secure deletion of personal information before resale or exchange.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY CHOOSE US ============ -->
+<section id="why" class="bg-paper py-20 lg:py-28">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <p class="font-mono text-xs text-signalDark tracking-widest uppercase mb-3">// The Ledger</p>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl text-ink">Why Choose Apple Zone</h2>
+      <p class="text-slate mt-3">Nine checks, run on every single device, every single time.</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-black/10 border border-black/10 rounded-2xl overflow-hidden">
+      <div class="bg-white p-6 flex items-start gap-3">
+        <i class="fa-solid fa-check text-signal mt-1"></i>
+        <div><p class="font-display font-semibold text-ink text-sm">Genuine Devices</p><p class="text-xs text-slate mt-1">No clones, no counterfeit hardware.</p></div>
+      </div>
+      <div class="bg-white p-6 flex items-start gap-3">
+        <i class="fa-solid fa-check text-signal mt-1"></i>
+        <div><p class="font-display font-semibold text-ink text-sm">IMEI Verified</p><p class="text-xs text-slate mt-1">Every unit checked against IMEI records.</p></div>
+      </div>
+      <div class="bg-white p-6 flex items-start gap-3">
+        <i class="fa-solid fa-check text-signal mt-1"></i>
+        <div><p class="font-display font-semibold text-ink text-sm">Battery Health Checked</p><p class="text-xs text-slate mt-1">Real battery percentage, disclosed upfront.</p></div>
+      </div>
+      <div class="bg-white p-6 flex items-start gap-3">
+        <i class="fa-solid fa-check text-signal mt-1"></i>
+        <div><p class="font-display font-semibold text-ink text-sm">Device Health Tested</p><p class="text-xs text-slate mt-1">Full hardware & software diagnostics.</p></div>
+      </div>
+      <div class="bg-white p-6 flex items-start gap-3">
+        <i class="fa-solid fa-check text-signal mt-1"></i>
+        <div><p class="font-display font-semibold text-ink text-sm">Fair Pricing</p><p class="text-xs text-slate mt-1">Grading-based pricing, not guesswork.</p></div>
+      </div>
+      <div class="bg-white p-6 flex items-start gap-3">
+        <i class="fa-solid fa-check text-signal mt-1"></i>
+        <div><p class="font-display font-semibold text-ink text-sm">Professional Diagnostics</p><p class="text-xs text-slate mt-1">Trained technicians, proper tools.</p></div>
+      </div>
+      <div class="bg-white p-6 flex items-start gap-3">
+        <i class="fa-solid fa-check text-signal mt-1"></i>
+        <div><p class="font-display font-semibold text-ink text-sm">Secure Transactions</p><p class="text-xs text-slate mt-1">Transparent receipts on every deal.</p></div>
+      </div>
+      <div class="bg-white p-6 flex items-start gap-3">
+        <i class="fa-solid fa-check text-signal mt-1"></i>
+        <div><p class="font-display font-semibold text-ink text-sm">Data Privacy Protection</p><p class="text-xs text-slate mt-1">Secure wipes, handled in front of you.</p></div>
+      </div>
+      <div class="bg-white p-6 flex items-start gap-3">
+        <i class="fa-solid fa-check text-signal mt-1"></i>
+        <div><p class="font-display font-semibold text-ink text-sm">Customer Support</p><p class="text-xs text-slate mt-1">Real help, before and after the sale.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REVIEWS ============ -->
+<section id="reviews" class="bg-paperDim py-20 lg:py-28 border-t border-black/5 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 mb-12">
+    <p class="font-mono text-xs text-signalDark tracking-widest uppercase mb-3">// Customer Reviews</p>
+    <h2 class="font-display font-bold text-3xl sm:text-4xl text-ink">What Customers Say</h2>
+  </div>
+
+  <div class="relative">
+    <div class="pointer-events-none absolute inset-y-0 left-0 w-10 sm:w-24 bg-gradient-to-r from-paperDim to-transparent z-10"></div>
+    <div class="pointer-events-none absolute inset-y-0 right-0 w-10 sm:w-24 bg-gradient-to-l from-paperDim to-transparent z-10"></div>
+    <div class="flex gap-5 ticker-track" id="tickerTrack" style="width:max-content;"></div>
+  </div>
+</section>
+
+<!-- ============ CONTACT / SERVICE REQUEST FORM ============ -->
+<section id="contact" class="bg-ink text-paper py-20 lg:py-28">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 grid lg:grid-cols-2 gap-12">
+
+    <!-- Form -->
+    <div>
+      <p class="font-mono text-xs text-signal tracking-widest uppercase mb-3">// Service Request</p>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl mb-2">Get in Touch</h2>
+      <p class="text-paper/60 mb-8">Tell us what you need — buying, selling, exchange or a diagnostic — and we'll respond within the day.</p>
+
+      <form id="contactForm" class="space-y-4">
+        <input type="hidden" name="access_key" value="INSERT_WEB3FORMS_KEY">
+        <input type="hidden" name="subject" value="New Inquiry — Apple Zone Website">
+        <input type="checkbox" name="botcheck" class="hidden" style="display:none">
+
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label class="text-xs font-mono text-paper/50 block mb-1.5">FULL NAME</label>
+            <input required name="full_name" type="text" placeholder="Your name" class="w-full bg-inkSoft border border-white/10 rounded-lg px-4 py-3 text-sm outline-none focus:border-signal/50 transition-colors">
+          </div>
+          <div>
+            <label class="text-xs font-mono text-paper/50 block mb-1.5">MOBILE NUMBER</label>
+            <input required name="mobile_number" type="tel" placeholder="+91 XXXXX XXXXX" class="w-full bg-inkSoft border border-white/10 rounded-lg px-4 py-3 text-sm outline-none focus:border-signal/50 transition-colors">
+          </div>
+        </div>
+
+        <div>
+          <label class="text-xs font-mono text-paper/50 block mb-1.5">EMAIL ADDRESS</label>
+          <input required name="email" type="email" placeholder="you@example.com" class="w-full bg-inkSoft border border-white/10 rounded-lg px-4 py-3 text-sm outline-none focus:border-signal/50 transition-colors">
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label class="text-xs font-mono text-paper/50 block mb-1.5">SERVICE TYPE</label>
+            <select name="service_type" class="w-full bg-inkSoft border border-white/10 rounded-lg px-4 py-3 text-sm outline-none focus:border-signal/50 transition-colors">
+              <option>Buy a Device</option>
+              <option>Sell a Device</option>
+              <option>Exchange a Device</option>
+              <option>Device Grading</option>
+              <option>Device Health Check</option>
+              <option>Battery Health Check</option>
+              <option>IMEI Verification</option>
+              <option>Stolen Phone Verification</option>
+              <option>Data Transfer / Backup / Wipe</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-xs font-mono text-paper/50 block mb-1.5">DEVICE MODEL</label>
+            <input name="device_model" type="text" placeholder="e.g. iPhone 13, MacBook Pro" class="w-full bg-inkSoft border border-white/10 rounded-lg px-4 py-3 text-sm outline-none focus:border-signal/50 transition-colors">
+          </div>
+        </div>
+
+        <div>
+          <label class="text-xs font-mono text-paper/50 block mb-1.5">MESSAGE</label>
+          <textarea name="message" rows="4" placeholder="Tell us more about what you need..." class="w-full bg-inkSoft border border-white/10 rounded-lg px-4 py-3 text-sm outline-none focus:border-signal/50 transition-colors resize-none"></textarea>
+        </div>
+
+        <button type="submit" id="submitBtn" class="w-full bg-signal hover:bg-signalDark text-ink font-semibold py-3.5 rounded-lg transition-colors flex items-center justify-center gap-2">
+          <i class="fa-solid fa-paper-plane"></i> <span id="submitText">Send Inquiry</span>
+        </button>
+
+        <p id="formStatus" class="text-sm text-center hidden"></p>
+      </form>
+    </div>
+
+    <!-- Contact info + map -->
+    <div>
+      <p class="font-mono text-xs text-signal tracking-widest uppercase mb-3">// Visit or Call</p>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl mb-6">Find Us</h2>
+
+      <div class="space-y-4 mb-6">
+        <a href="tel:+917780708876" class="flex items-center gap-4 bg-inkSoft border border-white/10 rounded-xl p-4 hover:border-signal/40 transition-colors">
+          <div class="w-10 h-10 rounded-lg bg-signal/10 text-signal flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-phone"></i></div>
+          <div><p class="text-xs text-paper/50 font-mono">PHONE</p><p class="font-medium">+91 77807 08876</p></div>
+        </a>
+        <a href="https://wa.me/917780708876" target="_blank" rel="noopener" class="flex items-center gap-4 bg-inkSoft border border-white/10 rounded-xl p-4 hover:border-signal/40 transition-colors">
+          <div class="w-10 h-10 rounded-lg bg-signal/10 text-signal flex items-center justify-center flex-shrink-0"><i class="fa-brands fa-whatsapp"></i></div>
+          <div><p class="text-xs text-paper/50 font-mono">WHATSAPP</p><p class="font-medium">+91 77807 08876</p></div>
+        </a>
+        <a href="mailto:applezone.kphb@gmail.com" class="flex items-center gap-4 bg-inkSoft border border-white/10 rounded-xl p-4 hover:border-signal/40 transition-colors">
+          <div class="w-10 h-10 rounded-lg bg-signal/10 text-signal flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-envelope"></i></div>
+          <div><p class="text-xs text-paper/50 font-mono">EMAIL</p><p class="font-medium">applezone.kphb@gmail.com</p></div>
+        </a>
+        <div class="flex items-center gap-4 bg-inkSoft border border-white/10 rounded-xl p-4">
+          <div class="w-10 h-10 rounded-lg bg-signal/10 text-signal flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-location-dot"></i></div>
+          <div><p class="text-xs text-paper/50 font-mono">ADDRESS</p><p class="font-medium text-sm leading-relaxed">15-21-16/9, Block 16 LIG Flats, Shop No. 1, 1st Floor, Kukatpally Housing Board Colony, 3rd Phase, Hyderabad, Telangana 500072</p></div>
+        </div>
+        <div class="flex items-center gap-4 bg-inkSoft border border-white/10 rounded-xl p-4">
+          <div class="w-10 h-10 rounded-lg bg-signal/10 text-signal flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-clock"></i></div>
+          <div><p class="text-xs text-paper/50 font-mono">BUSINESS HOURS</p><p class="font-medium text-sm">Mon – Sun: 10:00 AM – 9:00 PM</p></div>
+        </div>
+      </div>
+
+      <div class="rounded-xl overflow-hidden border border-white/10 h-64">
+        <iframe
+          title="Apple Zone location map"
+          width="100%" height="100%" style="border:0;" loading="lazy"
+          src="https://www.google.com/maps?q=17.494930%2C78.404245&z=15&output=embed">
+        </iframe>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="bg-inkSoft text-paper/70 pt-16 pb-8 border-t border-white/10">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+
+      <div>
+        <div class="flex items-center gap-2.5 mb-4">
+          <span class="w-9 h-9 rounded-lg bg-signal/15 border border-signal/30 flex items-center justify-center font-mono text-signal font-bold text-sm">AZ</span>
+          <span class="font-display font-semibold text-lg text-paper">Apple Zone</span>
+        </div>
+        <p class="text-sm leading-relaxed mb-4">Premium pre-owned device marketplace & service center in Kukatpally, Hyderabad. Independent retailer — not affiliated with Apple Inc.</p>
+        <div class="flex gap-3">
+          <a href="https://www.instagram.com/apple_zone.kphb?igsh=MTJqdmg0Nm5pYjIwMA==" target="_blank" rel="noopener" aria-label="Instagram" class="w-9 h-9 rounded-lg bg-white/5 hover:bg-signal/20 flex items-center justify-center transition-colors"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.facebook.com/share/1DQdmV1seY/" target="_blank" rel="noopener" aria-label="Facebook" class="w-9 h-9 rounded-lg bg-white/5 hover:bg-signal/20 flex items-center justify-center transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://youtube.com/@aj-et2xp?si=1DIgER5D4J4IZUoE" target="_blank" rel="noopener" aria-label="YouTube" class="w-9 h-9 rounded-lg bg-white/5 hover:bg-signal/20 flex items-center justify-center transition-colors"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://wa.me/917780708876" target="_blank" rel="noopener" aria-label="WhatsApp" class="w-9 h-9 rounded-lg bg-white/5 hover:bg-signal/20 flex items-center justify-center transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <p class="font-display font-semibold text-paper mb-4 text-sm tracking-wide">QUICK LINKS</p>
+        <ul class="space-y-2.5 text-sm">
+          <li><a href="about.html" class="hover:text-signal transition-colors">About / Blog</a></li>
+          <li><a href="#devices" class="hover:text-signal transition-colors">Devices</a></li>
+          <li><a href="#sell-for-cash" class="hover:text-signal transition-colors">Sell For Cash</a></li>
+          <li><a href="#services" class="hover:text-signal transition-colors">Services</a></li>
+          <li><a href="#why" class="hover:text-signal transition-colors">Why Us</a></li>
+          <li><a href="#reviews" class="hover:text-signal transition-colors">Reviews</a></li>
+          <li><a href="#contact" class="hover:text-signal transition-colors">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="font-display font-semibold text-paper mb-4 text-sm tracking-wide">SERVICES</p>
+        <ul class="space-y-2.5 text-sm">
+          <li>Device Grading</li>
+          <li>IMEI Verification</li>
+          <li>Battery Health Check</li>
+          <li>Data Wipe & Backup</li>
+          <li>Stolen Phone Check</li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="font-display font-semibold text-paper mb-4 text-sm tracking-wide">CONTACT</p>
+        <ul class="space-y-2.5 text-sm">
+          <li class="flex items-start gap-2"><i class="fa-solid fa-phone mt-0.5 text-signal"></i> +91 77807 08876</li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-envelope mt-0.5 text-signal"></i> applezone.kphb@gmail.com</li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-location-dot mt-0.5 text-signal"></i> Kukatpally, Hyderabad 500072</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="border-t border-white/10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-paper/40">
+      <p>&copy; <span id="year"></span> Apple Zone. All rights reserved.</p>
+      <p>Independent pre-owned device retailer. Not affiliated with, endorsed by, or authorized by Apple Inc.</p>
+    </div>
+
+    <div class="text-center mt-6 pt-5 border-t border-white/5">
+      <p class="text-xs text-paper/40">
+        Made by <span class="text-paper/70 font-medium">Meraj Mohi Uddin</span> ·
+        <a href="https://www.instagram.com/meraj_yaps?igsh=MXcxZDc0d2hwbDFhMg==" target="_blank" rel="noopener" class="text-signal hover:text-signalDark transition-colors">@meraj_yaps</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ FLOATING ACTION BUTTONS ============ -->
+<div class="fixed bottom-5 right-5 z-50 flex flex-col gap-3">
+  <a href="https://goo.gl/maps/y7fenpE7WwMp7nRp8?g_st=aw" target="_blank" rel="noopener" aria-label="Get directions"
+    class="w-12 h-12 rounded-full bg-ink text-paper shadow-lg flex items-center justify-center hover:scale-110 transition-transform border border-white/10">
+    <i class="fa-solid fa-diamond-turn-right"></i>
+  </a>
+  <a href="tel:+917780708876" aria-label="Call Apple Zone"
+    class="w-12 h-12 rounded-full bg-amber text-ink shadow-lg flex items-center justify-center hover:scale-110 transition-transform">
+    <i class="fa-solid fa-phone"></i>
+  </a>
+  <a href="https://wa.me/917780708876" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"
+    class="w-14 h-14 rounded-full bg-signal text-ink shadow-lg flex items-center justify-center hover:scale-110 transition-transform text-xl">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+</div>
+
+<script>
+/* ============ DATA ============ */
+// Device listings come from the live backend (added/edited via /admin) instead of being
+// hardcoded here. See /api/devices for the read-only public endpoint.
+let DEVICES = [];
+
+const ICON_BY_TYPE = {
+  iphone: 'fa-mobile-screen-button',
+  android: 'fa-mobile-screen-button',
+  macbook: 'fa-laptop',
+  watch: 'fa-clock',
+  airpods: 'fa-headphones',
+};
+
+const REVIEWS = [
+  { name:"Rahul Verma", rating:5, text:"Bought a Grade A iPhone 13 — battery health was exactly as listed. IMEI report gave real peace of mind." },
+  { name:"Sneha Reddy", rating:5, text:"Sold my old MacBook here. Fair price, instant payment, and they wiped my data right in front of me." },
+  { name:"Imran Khan", rating:4, text:"Exchanged my Apple Watch for a newer model. Smooth process, transparent grading, no haggling drama." },
+  { name:"Pooja Sharma", rating:5, text:"The battery health check saved me from buying a phone with a dying battery elsewhere. Honest team." },
+  { name:"Arjun Rao", rating:5, text:"Got my AirPods Pro checked for genuine parts before buying — turned out the seller had used fakes. Glad I checked." },
+  { name:"Divya Menon", rating:4, text:"Quick IMEI and stolen-phone verification before I bought a second-hand iPhone. Highly recommend Apple Zone." },
+];
+
+/* ============ FETCH DEVICES FROM BACKEND ============ */
+async function fetchDevices() {
+  try {
+    const res = await fetch('/api/devices');
+    if (!res.ok) throw new Error('Failed to load devices');
+    DEVICES = await res.json();
+    applyFilters();
+  } catch (err) {
+    grid.innerHTML = `<p class="col-span-full text-center text-slate font-mono text-sm py-12">
+      Couldn't load current listings right now. Please refresh, or reach us directly on WhatsApp.
+    </p>`;
+    console.error('Device fetch error:', err);
+  }
+}
+
+/* ============ RENDER DEVICES ============ */
+const grid = document.getElementById('deviceGrid');
+const statusStyles = {
+  available: { dot:'bg-emerald-400', text:'text-emerald-700', bg:'bg-emerald-100', border:'border-emerald-300', label:'Available', shadow:'shadow-emerald-200/40' },
+  reserved:  { dot:'bg-amber-500',  text:'text-amber-700',  bg:'bg-amber-500',  border:'border-amber-600',  label:'Reserved', shadow:'shadow-amber-500/30' },
+  sold:      { dot:'bg-rose-600',   text:'text-rose-700',   bg:'bg-rose-600',   border:'border-rose-700',   label:'Sold', shadow:'shadow-rose-500/30' },
+};
+
+function renderDevices(list) {
+  grid.innerHTML = '';
+  document.getElementById('noResults').classList.toggle('hidden', list.length !== 0);
+  list.forEach(d => {
+    const s = statusStyles[d.status];
+    const card = document.createElement('div');
+    const icon = ICON_BY_TYPE[d.type] || 'fa-mobile-screen-button';
+    const imageSrc = Array.isArray(d.photos) && d.photos.length ? d.photos[0] : '';
+    card.className = 'bg-white border border-black/5 rounded-2xl overflow-hidden lift reveal in';
+    card.innerHTML = `
+      <div class="h-40 bg-ink flex items-center justify-center relative overflow-hidden">
+        ${imageSrc ? `<img src="${imageSrc}" alt="${d.name}" class="w-full h-full object-cover">` : `<i class="fa-solid ${icon} text-5xl text-paper/20"></i>`}
+        <span class="absolute top-3 left-3 ${s.bg} ${s.text} border ${s.border} text-[11px] font-mono px-2.5 py-1 rounded-full flex items-center gap-1.5 shadow-sm font-semibold">
+          <span class="w-1.5 h-1.5 rounded-full ${s.dot}"></span> ${s.label}
+        </span>
+        <span class="absolute top-3 right-3 bg-white/10 text-paper text-[11px] font-mono px-2.5 py-1 rounded-full">${d.condition}</span>
+      </div>
+      <div class="p-5">
+        <p class="font-display font-semibold text-ink">${d.name}</p>
+        <p class="font-mono text-xs text-slate mt-1">${d.storage} &middot; Battery ${d.battery}%</p>
+        <div class="flex items-center justify-between mt-4">
+          <p class="font-display font-bold text-xl text-ink">₹${d.price.toLocaleString('en-IN')}</p>
+          <a href="https://wa.me/917780708876?text=${encodeURIComponent('Hi, I\'m interested in the '+d.name+' ('+d.storage+', '+d.condition+') listed at ₹'+d.price.toLocaleString('en-IN')+'.')}"
+             target="_blank" rel="noopener"
+             class="bg-signal/10 hover:bg-signal hover:text-ink text-signalDark border border-signal/30 text-xs font-semibold px-3.5 py-2 rounded-lg transition-colors flex items-center gap-1.5">
+            <i class="fa-brands fa-whatsapp"></i> Inquire
+          </a>
+        </div>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+/* ============ FILTERS ============ */
+const searchInput = document.getElementById('searchInput');
+const typeFilter = document.getElementById('typeFilter');
+const statusFilter = document.getElementById('statusFilter');
+const priceRange = document.getElementById('priceRange');
+const priceLabel = document.getElementById('priceLabel');
+const chips = document.querySelectorAll('.chip');
+let activeCategory = 'all';
+
+function applyFilters() {
+  const q = searchInput.value.trim().toLowerCase();
+  const type = activeCategory !== 'all' ? activeCategory : typeFilter.value;
+  const status = statusFilter.value;
+  const maxPrice = Number(priceRange.value);
+
+  const filtered = DEVICES.filter(d => {
+    const matchesQ = d.name.toLowerCase().includes(q);
+    const matchesType = type === 'all' || d.type === type;
+    const matchesStatus = status === 'all' || d.status === status;
+    const matchesPrice = d.price <= maxPrice;
+    return matchesQ && matchesType && matchesStatus && matchesPrice;
+  });
+  renderDevices(filtered);
+}
+
+searchInput.addEventListener('input', applyFilters);
+statusFilter.addEventListener('change', applyFilters);
+priceRange.addEventListener('input', () => {
+  priceLabel.textContent = '₹' + Number(priceRange.value).toLocaleString('en-IN');
+  applyFilters();
+});
+typeFilter.addEventListener('change', () => {
+  activeCategory = typeFilter.value;
+  chips.forEach(c => c.classList.toggle('active-chip', c.dataset.cat === activeCategory));
+  applyFilters();
+});
+chips.forEach(chip => {
+  chip.addEventListener('click', () => {
+    activeCategory = chip.dataset.cat;
+    typeFilter.value = activeCategory;
+    chips.forEach(c => c.classList.toggle('active-chip', c === chip));
+    applyFilters();
+  });
+});
+
+fetchDevices();
+
+/* ============ SELL FOR CASH ============ */
+// Brand logos live in backend/public/assets/brands. Use a relative path first
+// for the real backend site, then fall back for the root preview copy.
+function brandLogoPath(filename) {
+  return `assets/brands/${filename}`;
+}
+
+function brandLogoFallbackPath(filename) {
+  return `backend/public/assets/brands/${filename}`;
+}
+
+// If a logo file is ever missing, we fall back to a plain icon badge so nothing
+// looks broken.
+const BRANDS_BY_CATEGORY = {
+  Phone: [
+    { name: 'Apple', logo: 'apple.png' },
+    { name: 'Samsung', logo: 'samsung.png' },
+    { name: 'Xiaomi', logo: 'xiaomi.png' },
+    { name: 'Vivo', logo: 'vivo.png' },
+    { name: 'OnePlus', logo: 'oneplus.png' },
+    { name: 'OPPO', logo: 'oppo.png' },
+    { name: 'Realme', logo: 'realme.png' },
+    { name: 'Motorola', logo: 'motorola.png' },
+    { name: 'Nokia', logo: 'nokia.png' },
+    { name: 'Honor', logo: 'honor.png' },
+    { name: 'Google', logo: 'google.png' },
+    { name: 'POCO', logo: 'poco.png' },
+    { name: 'Infinix', logo: 'infinix.png' },
+    { name: 'Tecno', logo: 'tecno.png' },
+    { name: 'iQOO', logo: 'iqoo.png' },
+    { name: 'Nothing', logo: 'nothing.png' },
+    { name: 'Other Brand', logo: null },
+  ],
+  Laptop: [
+    { name: 'Apple', logo: 'apple.png' },
+    { name: 'Dell', logo: 'dell.png' },
+    { name: 'HP', logo: 'hp.png' },
+    { name: 'Lenovo', logo: 'lenovo.png' },
+    { name: 'Asus', logo: 'asus.png' },
+    { name: 'Acer', logo: 'acer.png' },
+    { name: 'MSI', logo: 'msi.png' },
+    { name: 'Microsoft', logo: 'microsoft.png' },
+    { name: 'Samsung', logo: 'samsung.png' },
+    { name: 'LG', logo: 'lg.png' },
+    { name: 'Other Brand', logo: null },
+  ],
+  Tablet: [
+    { name: 'Apple', logo: 'apple.png' },
+    { name: 'Samsung', logo: 'samsung.png' },
+    { name: 'Xiaomi', logo: 'xiaomi.png' },
+    { name: 'Lenovo', logo: 'lenovo.png' },
+    { name: 'OPPO', logo: 'oppo.png' },
+    { name: 'Realme', logo: 'realme.png' },
+    { name: 'Honor', logo: 'honor.png' },
+    { name: 'Microsoft', logo: 'microsoft.png' },
+    { name: 'Other Brand', logo: null },
+  ],
+  Smartwatch: [
+    { name: 'Apple', logo: 'apple.png' },
+    { name: 'Samsung', logo: 'samsung.png' },
+    { name: 'Noise', logo: 'noise.png' },
+    { name: 'boAt', logo: 'boat.png' },
+    { name: 'Fire-Boltt', logo: 'fire-boltt.png' },
+    { name: 'Garmin', logo: 'garmin.png' },
+    { name: 'Fitbit', logo: 'fitbit.png' },
+    { name: 'Amazfit', logo: 'amazfit.png' },
+    { name: 'Fossil', logo: 'fossil.png' },
+    { name: 'Other Brand', logo: null },
+  ],
+};
+
+const sellCategoryGrid = document.getElementById('sellCategoryGrid');
+const sellBrandPanel = document.getElementById('sellBrandPanel');
+const sellBrandGrid = document.getElementById('sellBrandGrid');
+const sellBrandCategoryLabel = document.getElementById('sellBrandCategoryLabel');
+const sellBrandBackBtn = document.getElementById('sellBrandBackBtn');
+const sellDetailsPanel = document.getElementById('sellDetailsPanel');
+const sellDetailsBrandLabel = document.getElementById('sellDetailsBrandLabel');
+const sellDetailsBackBtn = document.getElementById('sellDetailsBackBtn');
+const sellDetailsForm = document.getElementById('sellDetailsForm');
+
+let sellSelectedCategory = '';
+let sellSelectedBrand = '';
+
+function showStep(step) {
+  sellCategoryGrid.classList.toggle('hidden', step !== 1);
+  sellBrandPanel.classList.toggle('hidden', step !== 2);
+  sellDetailsPanel.classList.toggle('hidden', step !== 3);
+  const target = step === 1 ? sellCategoryGrid : step === 2 ? sellBrandPanel : sellDetailsPanel;
+  target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+/* ---- Step 3 photo upload (preview only — see note in the form about WhatsApp's link limits) ---- */
+let sellSelectedPhotos = [];
+const sellPhotoDropZone = document.getElementById('sellPhotoDropZone');
+const sellPhotoInput = document.getElementById('sellPhotoInput');
+const sellPhotoPreviewGrid = document.getElementById('sellPhotoPreviewGrid');
+
+function renderSellPhotoPreviews() {
+  sellPhotoPreviewGrid.innerHTML = sellSelectedPhotos.map((file, i) => {
+    const url = URL.createObjectURL(file);
+    return `
+      <div class="relative">
+        <img src="${url}" class="w-full aspect-square object-cover rounded-lg border border-black/10">
+        <button type="button" data-remove-photo="${i}" class="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-rose text-white text-xs flex items-center justify-center shadow" aria-label="Remove photo">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>`;
+  }).join('');
+  sellPhotoPreviewGrid.querySelectorAll('[data-remove-photo]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      sellSelectedPhotos.splice(Number(btn.dataset.removePhoto), 1);
+      renderSellPhotoPreviews();
+    });
+  });
+}
+
+function addSellPhotos(files) {
+  const imageFiles = Array.from(files).filter(f => f.type.startsWith('image/'));
+  const room = Math.max(0, 5 - sellSelectedPhotos.length);
+  sellSelectedPhotos = sellSelectedPhotos.concat(imageFiles.slice(0, room));
+  renderSellPhotoPreviews();
+}
+
+sellPhotoDropZone.addEventListener('click', () => sellPhotoInput.click());
+sellPhotoInput.addEventListener('change', () => { addSellPhotos(sellPhotoInput.files); sellPhotoInput.value = ''; });
+['dragenter', 'dragover'].forEach(evt => {
+  sellPhotoDropZone.addEventListener(evt, (e) => { e.preventDefault(); sellPhotoDropZone.classList.add('drag-over'); });
+});
+['dragleave', 'drop'].forEach(evt => {
+  sellPhotoDropZone.addEventListener(evt, (e) => { e.preventDefault(); sellPhotoDropZone.classList.remove('drag-over'); });
+});
+sellPhotoDropZone.addEventListener('drop', (e) => addSellPhotos(e.dataTransfer.files));
+
+function renderSellBrandGrid(category) {
+  const brands = BRANDS_BY_CATEGORY[category] || BRANDS_BY_CATEGORY.Phone;
+  sellBrandGrid.innerHTML = brands.map(b => `
+    <button data-brand="${b.name}" class="sell-brand-btn group bg-white border border-black/5 rounded-xl p-4 text-center lift">
+      <div class="w-12 h-12 mx-auto mb-2 flex items-center justify-center">
+        ${b.logo
+          ? `<img src="${brandLogoPath(b.logo)}" data-fallback-src="${brandLogoFallbackPath(b.logo)}" alt="${b.name}" class="max-w-full max-h-full object-contain" onerror="if (this.dataset.fallbackSrc && this.src !== new URL(this.dataset.fallbackSrc, window.location.href).href) { this.src = this.dataset.fallbackSrc; this.dataset.fallbackSrc = ''; } else { this.style.display='none'; this.nextElementSibling.style.display='flex'; }">
+             <i class="fa-solid fa-mobile-screen-button text-lg text-ink" style="display:none;"></i>`
+          : `<i class="fa-solid fa-ellipsis text-lg text-ink"></i>`}
+      </div>
+      <span class="font-mono text-xs text-slate group-hover:text-ink transition-colors">${b.name}</span>
+    </button>`).join('');
+
+  sellBrandGrid.querySelectorAll('.sell-brand-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      sellSelectedBrand = btn.dataset.brand;
+      sellDetailsBrandLabel.textContent = `${sellSelectedBrand} ${sellSelectedCategory}`;
+      sellDetailsForm.reset();
+      sellSelectedPhotos = [];
+      renderSellPhotoPreviews();
+      showStep(3);
+    });
+  });
+}
+
+document.querySelectorAll('.sell-cat-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const category = btn.dataset.category;
+    sellSelectedCategory = category;
+
+    // "Sell More" has no specific brand list worth showing — go straight to WhatsApp.
+    if (btn.id === 'sellMoreBtn') {
+      const message = `Hi, I'd like to sell a device that's not listed on your site. Can you help me get a quote?`;
+      window.open(`https://wa.me/917780708876?text=${encodeURIComponent(message)}`, '_blank', 'noopener');
+      return;
+    }
+
+    sellBrandCategoryLabel.textContent = category;
+    renderSellBrandGrid(category);
+    showStep(2);
+  });
+});
+
+sellBrandBackBtn.addEventListener('click', () => showStep(1));
+sellDetailsBackBtn.addEventListener('click', () => showStep(2));
+
+sellDetailsForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const model = document.getElementById('sellModel').value.trim();
+  const storage = document.getElementById('sellStorage').value.trim();
+  const condition = document.getElementById('sellCondition').value;
+  const expectedPrice = document.getElementById('sellExpectedPrice').value.trim();
+  const notes = document.getElementById('sellNotes').value.trim();
+
+  let message = `Hi, I'd like to sell my ${sellSelectedBrand} ${sellSelectedCategory}.\n`;
+  message += `Model: ${model}\n`;
+  if (storage) message += `Storage/Capacity: ${storage}\n`;
+  message += `Condition: ${condition}\n`;
+  if (expectedPrice) message += `My expected price: ₹${Number(expectedPrice).toLocaleString('en-IN')}\n`;
+  if (notes) message += `Additional notes: ${notes}\n`;
+  if (sellSelectedPhotos.length > 0) {
+    message += `\n(I have ${sellSelectedPhotos.length} photo${sellSelectedPhotos.length === 1 ? '' : 's'} of the device ready — sending them right after this message.)\n`;
+  }
+  message += `\nCan you give me a quote?`;
+
+  window.open(`https://wa.me/917780708876?text=${encodeURIComponent(message)}`, '_blank', 'noopener');
+
+  if (sellSelectedPhotos.length > 0) {
+    toastNote('Now open WhatsApp and attach your photos in the chat — links can\'t carry images automatically.');
+  }
+});
+
+// Tiny reusable toast for short confirmations on this page (separate from the contact form's
+// own status text, since this one needs to show up over the Sell For Cash section).
+function toastNote(text) {
+  let el = document.getElementById('sellToast');
+  if (!el) {
+    el = document.createElement('div');
+    el.id = 'sellToast';
+    el.className = 'fixed bottom-5 left-1/2 -translate-x-1/2 bg-ink text-paper px-5 py-3 rounded-lg shadow-xl font-mono text-xs z-50 max-w-[90vw] text-center transition-opacity';
+    document.body.appendChild(el);
+  }
+  el.textContent = text;
+  el.style.opacity = '1';
+  clearTimeout(el._t);
+  el._t = setTimeout(() => { el.style.opacity = '0'; }, 4500);
+}
+
+/* ============ RENDER TESTIMONIALS TICKER ============ */
+const tickerTrack = document.getElementById('tickerTrack');
+function starString(n) {
+  return Array.from({length:5}, (_, i) => `<i class="fa-solid fa-star ${i < n ? 'text-amber' : 'text-black/10'}"></i>`).join('');
+}
+function renderTicker() {
+  const doubled = [...REVIEWS, ...REVIEWS];
+  tickerTrack.innerHTML = doubled.map(r => `
+    <div class="bg-white border border-black/5 rounded-xl p-6 w-[85vw] sm:w-96 min-h-[180px] flex-shrink-0">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-11 h-11 rounded-full bg-ink text-paper flex items-center justify-center font-display font-semibold text-sm flex-shrink-0">${r.name.split(' ').map(n=>n[0]).join('')}</div>
+        <div>
+          <p class="font-display font-semibold text-base text-ink">${r.name}</p>
+          <div class="text-xs mt-0.5">${starString(r.rating)}</div>
+        </div>
+      </div>
+      <p class="text-sm sm:text-[15px] text-slate leading-relaxed">${r.text}</p>
+    </div>`).join('');
+}
+renderTicker();
+
+/* ============ NAVBAR SCROLL STYLE ============ */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('shadow-lg', window.scrollY > 10);
+});
+
+/* ============ NAVBAR & MOBILE MENU ============ */
+const menuBtn = document.getElementById('menuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+
+function closeMobileMenu() {
+  mobileMenu.classList.add('hidden');
+  menuBtn.setAttribute('aria-expanded', 'false');
+  menuBtn.querySelector('i').className = 'fa-solid fa-bars text-xl';
+}
+
+function scrollToPageSection(sectionId) {
+  const target = document.getElementById(sectionId);
+  if (!target) return;
+
+  const navHeight = navbar ? navbar.offsetHeight : 0;
+  const targetTop = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 8;
+  window.scrollTo({ top: Math.max(0, targetTop), behavior: 'smooth' });
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', event => {
+    const sectionId = link.getAttribute('href').slice(1);
+    if (!sectionId || !document.getElementById(sectionId)) return;
+
+    event.preventDefault();
+    scrollToPageSection(sectionId);
+    history.pushState(null, '', `#${sectionId}`);
+
+    if (mobileMenu && menuBtn && !mobileMenu.classList.contains('hidden')) {
+      closeMobileMenu();
+    }
+  });
+});
+
+menuBtn.addEventListener('click', () => {
+  const isOpen = !mobileMenu.classList.contains('hidden');
+  mobileMenu.classList.toggle('hidden');
+  menuBtn.setAttribute('aria-expanded', String(!isOpen));
+  menuBtn.querySelector('i').className = isOpen ? 'fa-solid fa-bars text-xl' : 'fa-solid fa-xmark text-xl';
+});
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  closeMobileMenu();
+}));
+
+/* ============ REVEAL ON SCROLL ============ */
+const revealEls = document.querySelectorAll('section');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.08 });
+revealEls.forEach(el => { el.classList.add('reveal'); io.observe(el); });
+
+/* ============ FOOTER YEAR ============ */
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ============ CONTACT FORM (Web3Forms) ============ */
+const contactForm = document.getElementById('contactForm');
+const submitBtn = document.getElementById('submitBtn');
+const submitText = document.getElementById('submitText');
+const formStatus = document.getElementById('formStatus');
+
+contactForm.addEventListener('submit', async function (e) {
+  e.preventDefault();
+  submitBtn.disabled = true;
+  submitText.textContent = 'Sending...';
+  formStatus.classList.add('hidden');
+
+  const formData = new FormData(contactForm);
+  const object = Object.fromEntries(formData);
+  const json = JSON.stringify(object);
+
+  try {
+    const response = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: json,
+    });
+    const result = await response.json();
+
+    formStatus.classList.remove('hidden');
+    if (result.success) {
+      formStatus.textContent = "Thanks — your inquiry has been sent. We'll reach out shortly.";
+      formStatus.className = 'text-sm text-center text-signal';
+      contactForm.reset();
+    } else {
+      formStatus.textContent = 'Something went wrong. Please try WhatsApp or call us directly.';
+      formStatus.className = 'text-sm text-center text-rose';
+    }
+  } catch (err) {
+    formStatus.classList.remove('hidden');
+    formStatus.textContent = 'Network error. Please try WhatsApp or call us directly.';
+    formStatus.className = 'text-sm text-center text-rose';
+  } finally {
+    submitBtn.disabled = false;
+    submitText.textContent = 'Send Inquiry';
+  }
+});
+</script>
+
+</body>
+</html>
+ 
